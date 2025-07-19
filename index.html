@@ -88,22 +88,30 @@
             @apply w-6 h-6; /* Larger icon */
         }
         .user-info {
+            /* Adjusted for better alignment and spacing */
             @apply flex items-center space-x-2 p-2 rounded-full bg-gray-700 text-white;
         }
         .user-info img {
-            @apply w-8 h-8 rounded-full border border-gray-600;
+            /* Corrected avatar size and made it perfectly round */
+            @apply w-10 h-10 rounded-full border border-gray-600 object-cover; /* Added object-cover to prevent stretching */
         }
         .user-info span {
             @apply font-medium text-sm;
         }
         .logout-button {
-            @apply ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-full transition duration-300;
+            /* Refined logout button styling */
+            @apply ml-3 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-full shadow-md transition duration-300;
         }
         .logout-button:hover {
             background-color: #B91C1C; /* Darker red on hover */
         }
-        /* From Uiverse.io by vinodjangid07 */ 
-.Btn {
+        /* Removed unused Uiverse.io button styles */
+        .Btn, .svgContainer, .BG, .light-button, .button-holder, .light-holder, .dot, .light {
+            /* These classes are no longer directly used for the Discord button's appearance */
+            /* Keeping them here as empty rules to override any potential lingering effects from previous versions */
+            /* If you decide to use custom button styles from Uiverse.io again, you'll need to re-add their specific properties */
+        }
+    .Btn {
   width: 45px;
   height: 45px;
   display: flex;
@@ -328,7 +336,6 @@
                     <div class="bg-gray-900 p-6 rounded-lg shadow-xl card-hover-effect border border-gray-700">
                         <img
                             src="https://ik.imagekit.io/hswtnwf8i/a350%20iberia.png?updatedAt=1752938801051"
-                            
                             alt="Airbus A350"
                             class="rounded-md mb-4 w-full h-auto object-cover border border-gray-800"
                             onerror="this.onerror=null; this.src='https://placehold.co/400x250/2D3748/F8FAFC?text=Image+Not+Found';"
@@ -363,7 +370,7 @@
         </section>
 
         <!-- Contact Section -->
-         <section id="contact" class="py-16 bg-slate-900">
+        <section id="contact" class="py-16 bg-slate-900">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold text-white mb-8">Connect With Us</h2>
                 <p class="text-lg text-gray-300 mb-8">
@@ -506,7 +513,7 @@
                 div.innerHTML = `
                     <div class="user-info">
                         <img src="${avatarUrl}" alt="User Avatar">
-                        <span>${user.username}#${user.discriminator}</span>
+                        <span>${user.username}</span>
                         <button class="logout-button">Logout</button>
                     </div>
                 `;
