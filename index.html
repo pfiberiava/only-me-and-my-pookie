@@ -91,13 +91,19 @@
             /* Adjusted for better alignment and spacing */
             @apply flex items-center space-x-2 p-2 rounded-full bg-gray-700 text-white;
         }
-        .user-info img {
-            /* Corrected avatar size and made it perfectly round */
-            @apply w-10 h-10 rounded-full border border-gray-600 object-cover; /* Added object-cover to prevent stretching */
-        }
-        .user-info span {
-            @apply font-medium text-sm;
-        }
+          .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-text);
+      font-weight: 600;
+    }
+    .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--highlight);
+    }
         .logout-button {
             /* Refined logout button styling */
             @apply ml-3 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-full shadow-md transition duration-300;
