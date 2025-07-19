@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iberia VA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Poppins for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia.png?updatedAt=1752938663780" type="image/png">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+            background-color: #0F172A; /* Slate-900 for a dark theme */
+            color: #E2E8F0; /* Slate-200 for text */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: #F8FAFC; /* White for headings */
+        }
+        /* Custom styles for hero section background overlay */
+        .hero-overlay {
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+        }
+        /* Style for scroll-to-top button */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 100; /* High z-index to be on top */
+            background-color: #DC2626; /* Red-600 */
+            color: white;
+            padding: 12px 18px;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #B91C1C; /* Red-700 */
+            transform: translateY(-3px);
+        }
+        /* Basic icon styling for SVG consistency */
+        .icon-lg {
+            width: 4rem; /* 64px */
+            height: 4rem; /* 64px */
+        }
+        /* Card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Button hover effect */
+        .btn-primary {
+            background-color: #DC2626; /* Red-600 */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #B91C1C; /* Red-700 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        /* Discord Login Button and User Info Styling */
+        .discord-login-btn {
+            @apply flex items-center justify-center space-x-2 px-6 py-3 rounded-full text-base font-semibold; /* Increased padding and font size */
+            background-color: #5865F2; /* Discord Blue */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+        }
+        .discord-login-btn:hover {
+            background-color: #4752C4; /* Darker Discord Blue */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger hover shadow */
+        }
+        .discord-login-btn svg {
+            @apply w-6 h-6; /* Larger icon */
+        }
+        .user-info {
+            @apply flex items-center space-x-2 p-2 rounded-full bg-gray-700 text-white;
+        }
+        .user-info img {
+            @apply w-8 h-8 rounded-full border border-gray-600;
+        }
+        .user-info span {
+            @apply font-medium text-sm;
+        }
+        .logout-button {
+            @apply ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-full transition duration-300;
+        }
+        .logout-button:hover {
+            background-color: #B91C1C; /* Darker red on hover */
+        }
+        /* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  /* overflow: hidden; */
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.svgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  letter-spacing: 0.8px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  border: 1px solid rgba(156, 156, 156, 0.466);
+}
+
+.BG {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #7289da;
+  z-index: -1;
+  border-radius: 10px;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+
+.Btn:hover .BG {
+  transform: rotate(35deg);
+  transform-origin: bottom;
+}
+
+.Btn:hover .svgContainer {
+  border: 1px solid rgba(206, 206, 206, 0.466);
+  background-color: rgba(214, 214, 214, 0.466);
+  backdrop-filter: blur(4px);
+}
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 shadow-lg fixed w-full z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo/Brand -->
+            <div class="flex items-center">
+                <!-- Corrected Image Logo with Tailwind classes for size -->
+                <img src="https://images-ext-1.discordapp.net/external/yhrvUmF0u22OmbCPlJs0q_J0-MG5yzaK42SsGXz1-vA/https/i.postimg.cc/sxGYJQ14/image.png" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
+                <a href="#home" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
+                    Iberia VA
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
+                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">About Us</a>
+                <a href="#fleet" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Fleet</a>
+                <a href="#roster" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Roster</a>
+                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
+            </div>
+
+            <!-- Discord Auth Section for Desktop -->
+            <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
+                <!-- Content injected by JS -->
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2">
+                    <!-- Menu Icon SVG -->
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    <!-- Close Icon SVG (initially hidden) -->
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
+            <div class="flex flex-col items-center space-y-4">
+                <a href="#home" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">About Us</a>
+                <a href="#fleet" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Fleet</a>
+                <a href="#roster" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Roster</a>
+                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
+                <!-- Discord Auth Section for Mobile -->
+                <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20"> <!-- Padding to account for fixed header -->
+        <!-- Hero Section -->
+        <section id="home" class="relative h-screen bg-cover bg-center flex items-center justify-center text-white"
+            style="background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277');">
+            <div class="absolute inset-0 hero-overlay rounded-md"></div>
+            <div class="relative z-10 text-center p-6 rounded-lg bg-gray-900 bg-opacity-70 mx-4 md:mx-0 max-w-4xl border border-gray-700 shadow-xl">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
+                    <span class="text-red-600">Iberia VA</span> Flying for a better future
+                </h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-300 drop-shadow-md">
+                    Generating prosperity by connecting people to the world. Con Iberia, eres más
+                </p>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-16 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">About Iberia VA</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div class="md:w-1/2 text-left">
+                        <p class="text-lg leading-relaxed mb-4 text-gray-300">
+                            Iberia Virtual Airlines (VA) is a premier destination for flight simulator enthusiasts seeking a realistic and engaging virtual airline experience. We meticulously replicate the operations of the real-world Iberia Airlines, providing our pilots with authentic routes, procedures, and a dynamic environment.
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-300">
+                            Our community thrives on shared passion, offering robust flight tracking, a diverse and expanding fleet, and a supportive network of fellow aviators. Whether you're a seasoned veteran or just beginning your virtual flying journey, Iberia VA offers the perfect platform to refine your skills and connect with like-minded individuals.
+                        </p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img
+                            src="https://i.postimg.cc/tR8s28zj/a-new-banner-for-iberia.png"
+                            alt="Iberia VA Headquarters"
+                            class="rounded-lg shadow-xl w-full h-auto object-cover border border-gray-700"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/2D3748/F8FAFC?text=Image+Not+Found';"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features/Highlights Section -->
+        <section id="features" class="py-16 bg-slate-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-12">Why Choose Iberia VA?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <!-- Globe Icon SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Global Network</h3>
+                        <p class="text-gray-300">
+                            Access a vast network of routes and destinations across the globe, just like the real Iberia.
+                        </p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <!-- Users Icon SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Engaging Community</h3>
+                        <p class="text-gray-300">
+                            Connect with a passionate and supportive community of virtual pilots and staff.
+                        </p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <div class="flex justify-center mb-4">
+                            <!-- Award Icon SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-lg text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white mb-4">Progressive Career</h3>
+                        <p class="text-gray-300">
+                            Advance through a structured career system, unlocking new opportunities and challenges.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fleet Section -->
+        <section id="fleet" class="py-16 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-12">Our Elite Fleet</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Discover the meticulously maintained aircraft that form the backbone of our operations, ready for your next flight.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Fleet Item 1 -->
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <img
+                            src="https://ik.imagekit.io/hswtnwf8i/a320%20iberia.png?updatedAt=1752938800913"
+                            alt="Airbus A320"
+                            class="rounded-md mb-4 w-full h-auto object-cover border border-gray-800"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x250/2D3748/F8FAFC?text=Image+Not+Found';"
+                        />
+                        <h3 class="text-xl font-semibold text-white mb-2">Airbus A320</h3>
+                        <p class="text-gray-400">Versatile and efficient for short to medium-haul routes across Europe.</p>
+                    </div>
+                    <!-- Fleet Item 2 -->
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <img
+                            src="https://ik.imagekit.io/hswtnwf8i/757%20iberia.png?updatedAt=1752938800745"
+                            alt="Boeing 757"
+                            class="rounded-md mb-4 w-full h-auto object-cover border border-gray-800"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x250/2D3748/F8FAFC?text=Image+Not+Found';"
+                        />
+                        <h3 class="text-xl font-semibold text-white mb-2">Boeing 757</h3>
+                        <p class="text-gray-400">The most powerful jet in the Iberia Fleet Yet.</p>
+                    </div>
+                    <!-- Fleet Item 3 -->
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-xl card-hover-effect border border-gray-700">
+                        <img
+                            src="https://ik.imagekit.io/hswtnwf8i/a350%20iberia.png?updatedAt=1752938801051"
+                            
+                            alt="Airbus A350"
+                            class="rounded-md mb-4 w-full h-auto object-cover border border-gray-800"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x250/2D3748/F8FAFC?text=Image+Not+Found';"
+                        />
+                        <h3 class="text-xl font-semibold text-white mb-2">Airbus A350</h3>
+                        <p class="text-gray-400">The pinnacle of our long-haul fleet, offering unparalleled range and comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roster Section (Placeholder) -->
+        <section id="roster" class="py-16 bg-slate-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Our Distinguished Pilots</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Join the ranks of our dedicated virtual aviators from around the world.
+                </p>
+                <div class="flex justify-center">
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-2xl border border-gray-700">
+                        <p class="text-gray-400 italic mb-6">
+                            "Every pilot contributes to the vibrant tapestry of Iberia VA. We celebrate skill, dedication, and the joy of flight."
+                        </p>
+                        <div class="mt-6">
+                            <a href="#" class="inline-block btn-primary">
+                                Explore Our Pilot Roster (Coming Soon)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+         <section id="contact" class="py-16 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Connect With Us</h2>
+                <p class="text-lg text-gray-300 mb-8">
+                    Have inquiries, suggestions, or ready to join our community? We're here to help.
+                </p>
+                <div class="flex justify-center">
+                    <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="Your Name"
+                                required
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                placeholder="your@example.com"
+                                required
+                            />
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                Message
+                            </label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 resize-y"
+                                placeholder="Your message here..."
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <button
+                                type="submit"
+                                class="btn-primary flex items-center"
+                            >
+                                <!-- Mail Icon SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top">
+        <!-- Up Arrow Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; <span id="current-year"></span> Iberia VA. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://www.instagram.com/iberiava_pf/" class="hover:text-white transition duration-300">Instagram</a>
+                <a href="https://www.youtube.com/channel/UCahgitUZD7SNT2pVCie3ymQ" class="hover:text-white transition duration-300">Youtube</a>
+                <!-- Add social media links here -->
+                <a href="https://discord.gg/vcfDHnpK22" class="hover:text-white transition duration-300">Discord</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get the current year for the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Function to close mobile menu when a link is clicked
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+
+        // Scroll to top button logic
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Discord Login Integration
+        // Your Discord Client ID from the Discord Developer Portal
+        const CLIENT_ID = "1396149795470446692";
+        // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
+        const REDIRECT_URI = "https://oneworldvirtual.github.io/main/";
+
+        // Discord authorization URL - CRITICAL: Changed response_type to 'token'
+        const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
+
+        // Select all divs where user actions will be displayed
+        const userActionsDivs = document.querySelectorAll(".user-actions");
+
+        // Function to display user information and the logout button
+        function showUser(user) {
+            const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png';
+            userActionsDivs.forEach(div => {
+                div.innerHTML = `
+                    <div class="user-info">
+                        <img src="${avatarUrl}" alt="User Avatar">
+                        <span>${user.username}#${user.discriminator}</span>
+                        <button class="logout-button">Logout</button>
+                    </div>
+                `;
+                const logoutButton = div.querySelector(".logout-button");
+                if (logoutButton) {
+                    logoutButton.onclick = () => {
+                        localStorage.removeItem("discordUser");
+                        window.location.href = REDIRECT_URI; // Reload to reset state and clear URL hash
+                    };
+                }
+            });
+        }
+
+        // Function to display the Discord login button
+        function showLoginButton() {
+            userActionsDivs.forEach(div => {
+                div.innerHTML = `
+                   <a href="${AUTH_URL}"  class="Btn">
+  <span class="svgContainer">
+    <svg
+      viewBox="0 0 640 512"
+      fill="white"
+      height="1.4em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
+      ></path>
+    </svg>
+  </span>
+  <span class="BG"></span>
+</a>
+                `;
+            });
+        }
+
+        // --- Main login state management logic ---
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const token = params.get("access_token"); // We are now expecting 'access_token'
+
+        const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+
+        if (token) {
+            // If a token is present in the URL (after a new Discord login)
+            window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
+
+            fetch("https://discord.com/api/users/@me", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                if (!res.ok) {
+                    console.error("Discord API error:", res.status, res.statusText);
+                    localStorage.removeItem("discordUser"); // Clear stale user data
+                    showLoginButton();
+                    throw new Error("Failed to fetch user data from Discord");
+                }
+                return res.json();
+            })
+            .then(user => {
+                if (user.id) {
+                    localStorage.setItem("discordUser", JSON.stringify(user));
+                    showUser(user);
+                } else {
+                    console.error("Invalid Discord user data received:", user);
+                    localStorage.removeItem("discordUser");
+                    showLoginButton();
+                }
+            })
+            .catch(error => {
+                console.error("Error during Discord user fetch or processing:", error);
+                localStorage.removeItem("discordUser");
+                showLoginButton();
+            });
+        } else if (savedUser) {
+            showUser(savedUser);
+        } else {
+            showLoginButton();
+        }
+    </script>
+</body>
+</html>
