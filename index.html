@@ -104,13 +104,16 @@
       border-radius: 50%;
       border: 2px solid var(--highlight);
     }
-        .logout-button {
-            /* Refined logout button styling */
-            @apply ml-3 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-full shadow-md transition duration-300;
-        }
-        .logout-button:hover {
-            background-color: #B91C1C; /* Darker red on hover */
-        }
+       .logout-button {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
         /* Removed unused Uiverse.io button styles */
         .Btn, .svgContainer, .BG, .light-button, .button-holder, .light-holder, .dot, .light {
             /* These classes are no longer directly used for the Discord button's appearance */
