@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Poppins for headings, Inter for body -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia.png?updatedAt=1752938663780" type="image/png">
+    <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" type="image/png">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -88,39 +88,22 @@
             @apply w-6 h-6; /* Larger icon */
         }
         .user-info {
-            /* Adjusted for better alignment and spacing */
             @apply flex items-center space-x-2 p-2 rounded-full bg-gray-700 text-white;
         }
-          .user-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary-text);
-      font-weight: 600;
-    }
-    .user-info img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid var(--highlight);
-    }
-       .logout-button {
-      background-color: var(--accent);
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-        /* Removed unused Uiverse.io button styles */
-        .Btn, .svgContainer, .BG, .light-button, .button-holder, .light-holder, .dot, .light {
-            /* These classes are no longer directly used for the Discord button's appearance */
-            /* Keeping them here as empty rules to override any potential lingering effects from previous versions */
-            /* If you decide to use custom button styles from Uiverse.io again, you'll need to re-add their specific properties */
+        .user-info img {
+            @apply w-8 h-8 rounded-full border border-gray-600;
         }
-    .Btn {
+        .user-info span {
+            @apply font-medium text-sm;
+        }
+        .logout-button {
+            @apply ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-full transition duration-300;
+        }
+        .logout-button:hover {
+            background-color: #B91C1C; /* Darker red on hover */
+        }
+        /* From Uiverse.io by vinodjangid07 */ 
+.Btn {
   width: 45px;
   height: 45px;
   display: flex;
@@ -182,8 +165,8 @@
             <!-- Logo/Brand -->
             <div class="flex items-center">
                 <!-- Corrected Image Logo with Tailwind classes for size -->
-                <img src="https://images-ext-1.discordapp.net/external/yhrvUmF0u22OmbCPlJs0q_J0-MG5yzaK42SsGXz1-vA/https/i.postimg.cc/sxGYJQ14/image.png" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
-                <a href="#home" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
+                <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
+                <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
                     Iberia VA
                 </a>
             </div>
@@ -236,7 +219,7 @@
             <div class="absolute inset-0 hero-overlay rounded-md"></div>
             <div class="relative z-10 text-center p-6 rounded-lg bg-gray-900 bg-opacity-70 mx-4 md:mx-0 max-w-4xl border border-gray-700 shadow-xl">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
-                    <span class="text-red-600">Iberia VA</span> Flying for a better future
+                    <span class="text-red-600">Iberia VA,</span> Flying for a better future
                 </h1>
                 <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-gray-300 drop-shadow-md">
                     Generating prosperity by connecting people to the world. Con Iberia, eres más
@@ -259,7 +242,7 @@
                     </div>
                     <div class="md:w-1/2">
                         <img
-                            src="https://i.postimg.cc/tR8s28zj/a-new-banner-for-iberia.png"
+                            src="https://ik.imagekit.io/hswtnwf8i/iberia%20banner.png?updatedAt=1753001611617"
                             alt="Iberia VA Headquarters"
                             class="rounded-lg shadow-xl w-full h-auto object-cover border border-gray-700"
                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/2D3748/F8FAFC?text=Image+Not+Found';"
@@ -345,6 +328,7 @@
                     <div class="bg-gray-900 p-6 rounded-lg shadow-xl card-hover-effect border border-gray-700">
                         <img
                             src="https://ik.imagekit.io/hswtnwf8i/a350%20iberia.png?updatedAt=1752938801051"
+                            
                             alt="Airbus A350"
                             class="rounded-md mb-4 w-full h-auto object-cover border border-gray-800"
                             onerror="this.onerror=null; this.src='https://placehold.co/400x250/2D3748/F8FAFC?text=Image+Not+Found';"
@@ -379,7 +363,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-slate-900">
+         <section id="contact" class="py-16 bg-slate-900">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold text-white mb-8">Connect With Us</h2>
                 <p class="text-lg text-gray-300 mb-8">
