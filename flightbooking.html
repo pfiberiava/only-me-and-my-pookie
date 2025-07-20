@@ -15,8 +15,8 @@
             scroll-behavior: smooth; /* Smooth scrolling for navigation */
             background-color: #0F172A; /* Slate-900 for a dark theme */
             color: #E2E8F0; /* Slate-200 for text */
-            /* New background styles - REPLACE WITH YOUR IMAGE URL */
-            background-image: url('YOUR_BACKGROUND_IMAGE_URL_HERE');
+            /* Background image for the entire body */
+            background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277');
             background-size: cover; /* Cover the entire viewport */
             background-position: center; /* Center the background image */
             background-attachment: fixed; /* Keep the background fixed during scroll */
@@ -97,17 +97,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--primary-text);
+            color: #E2E8F0; /* Slate-200 */
             font-weight: 600;
         }
         .user-info img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 2px solid var(--highlight);
+            border: 2px solid #DC2626; /* Red-600 */
         }
         .logout-button {
-            background-color: var(--accent);
+            background-color: #DC2626; /* Red-600 */
             color: white;
             padding: 0.5rem 1.2rem;
             border: none;
@@ -117,7 +117,7 @@
             transition: background-color 0.2s;
         }
         .logout-button:hover {
-            background-color: #c42020;
+            background-color: #B91C1C; /* Red-700 */
         }
 
         /* From Uiverse.io by vinodjangid07 */ 
@@ -189,10 +189,12 @@
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-8">
-                <!-- Changed 'Home' to 'Book a Flight' and linked to #booking -->
                 <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
+                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
             </div>
 
+            <!-- Discord Auth Section for Desktop -->
+            <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
                 <!-- Content injected by JS -->
             </div>
 
@@ -208,11 +210,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
             <div class="flex flex-col items-center space-y-4">
-                <!-- Changed 'Home' to 'Book a Flight' and linked to #booking -->
-                <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Book a Flight</a>
-                <a href="#about" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">About Us</a>
-                <a href="#fleet" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Fleet</a>
-                <a href="#roster" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Roster</a>
+                <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
                 <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
                 <!-- Discord Auth Section for Mobile -->
                 <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
@@ -231,7 +229,7 @@
                     Search for your perfect route and start your virtual journey with us today.
                 </p>
 
-                <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('YOUR_BOOKING_BACKGROUND_IMAGE_URL_HERE'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
+                <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('aaab.png'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
                     <!-- Message for not logged in users -->
                     <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
                         <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
@@ -248,14 +246,15 @@
                             <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
                                 Origin Airport (ICAO)
                             </label>
-                            <input
-                                type="text"
+                            <select
                                 id="origin"
                                 name="origin"
                                 class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="e.g., LEBL (Barcelona)"
                                 required
-                            />
+                            >
+                                <option value="">Select an Origin</option>
+                                <!-- Options will be dynamically populated by JavaScript -->
+                            </select>
                         </div>
 
                         <!-- Destination Airport -->
@@ -333,7 +332,7 @@
                             </select>
                         </div>
 
-                        <!-- Search Button -->
+                        <!-- Submit Button -->
                         <div class="md:col-span-2 flex justify-center mt-6">
                             <button
                                 type="submit"
@@ -342,30 +341,22 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
-                                Search Flights
+                                Book Flight
                             </button>
                         </div>
                     </form>
 
-                    <!-- Flight Results Section -->
-                    <div id="flight-results" class="mt-12 text-left hidden">
-                        <h3 class="text-2xl font-bold text-white mb-6">Available Flights</h3>
-                        <!-- Flight results will be dynamically inserted here by JavaScript -->
+                    <!-- Booking Success Message -->
+                    <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
+                        <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
+                        <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Us Section -->
- 
 
-        <!-- Features/Highlights Section -->
 
-        <!-- Fleet Section -->
-      
-
-        <!-- Roster Section (Placeholder) -->
-      
         <!-- Contact Section -->
         <section id="contact" class="py-16 bg-slate-900">
             <div class="container mx-auto px-6 text-center">
@@ -503,9 +494,10 @@
             ];
 
             const flightBookingForm = document.getElementById('flight-booking-form');
-            const flightResultsDiv = document.getElementById('flight-results');
+            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); // Renamed from flightResultsDiv
             const loginRequiredMessage = document.getElementById('login-required-message');
             const loginButtonContainer = document.getElementById('login-button-container');
+            const originSelect = document.getElementById('origin'); // New origin select element
             const destinationSelect = document.getElementById('destination');
             const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
 
@@ -522,16 +514,30 @@
                 });
             }
 
+            // Function to populate origin dropdown
+            function populateOriginDropdown() {
+                const uniqueOrigins = new Map();
+                availableFlights.forEach(flight => {
+                    uniqueOrigins.set(flight.origin, flight.originName);
+                });
+
+                originSelect.innerHTML = '<option value="">Select an Origin</option>';
+                uniqueOrigins.forEach((name, icao) => {
+                    const option = document.createElement('option');
+                    option.value = icao;
+                    option.textContent = `${icao} (${name})`;
+                    originSelect.appendChild(option);
+                });
+            }
+
             // Function to populate destination dropdown
             function populateDestinationDropdown() {
-                const uniqueDestinations = new Map(); // Using Map to maintain insertion order and ensure uniqueness
+                const uniqueDestinations = new Map();
                 availableFlights.forEach(flight => {
                     uniqueDestinations.set(flight.destination, flight.destinationName);
                 });
 
-                // Clear existing options except the first "Select a Destination"
                 destinationSelect.innerHTML = '<option value="">Select a Destination</option>';
-
                 uniqueDestinations.forEach((name, icao) => {
                     const option = document.createElement('option');
                     option.value = icao;
@@ -540,63 +546,31 @@
                 });
             }
 
-            // Function to render flights
-            function renderFlights(flightsToDisplay) {
-                flightResultsDiv.innerHTML = '<h3 class="text-2xl font-bold text-white mb-6">Available Flights</h3>'; // Clear previous results and add heading
-                if (flightsToDisplay.length === 0) {
-                    flightResultsDiv.innerHTML += '<p class="text-gray-400">No flights found for your search criteria.</p>';
-                } else {
-                    flightsToDisplay.forEach(flight => {
-                        const flightCard = `
-                            <div class="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700 mb-4">
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="text-lg font-semibold text-red-400">${flight.flightNumber}</span>
-                                    <span class="text-gray-400">${flight.aircraft}</span>
-                                </div>
-                                <p class="text-gray-300">${flight.origin} (${flight.originName}) <span class="font-bold">→</span> ${flight.destination} (${flight.destinationName})</p>
-                                <p class="text-gray-400 text-sm">Departure: <span id="departureTime-${flight.flightNumber}">${flight.departureTime}</span></p>
-                                <p class="text-gray-400 text-sm">Arrival: <span id="arrivalTime-${flight.flightNumber}">${flight.arrivalTime}</span></p>
-                                <div class="text-right mt-4">
-                                    <span class="text-xl font-bold text-white mr-4">€${flight.price}</span>
-                                    <button class="btn-primary px-4 py-2 text-sm">Select Flight</button>
-                                </div>
-                            </div>
-                        `;
-                        flightResultsDiv.innerHTML += flightCard;
-                    });
-                }
-            }
-
-            // Initial population of destination dropdown
+            // Initial population of dropdowns
+            populateOriginDropdown();
             populateDestinationDropdown();
-            // Initial render of all flights when the page loads
-            renderFlights(availableFlights);
 
             // Event listener for form submission
             if (flightBookingForm) {
                 flightBookingForm.addEventListener('submit', (event) => {
                     event.preventDefault(); // Prevent default form submission
 
-                    // Get form values
-                    const originInput = document.getElementById('origin').value.toUpperCase().trim();
-                    const destinationInput = destinationSelect.value.toUpperCase().trim(); // Get value from select
-                    const departureDateInput = document.getElementById('departure-date').value;
+                    // In a real application, you would send this data to a backend
+                    // For now, we'll just show a success message.
+                    console.log('Flight booking form submitted!');
+                    console.log('Origin:', originSelect.value);
+                    console.log('Destination:', destinationSelect.value);
+                    console.log('Departure Date:', document.getElementById('departure-date').value);
+                    console.log('Return Date:', document.getElementById('return-date').value);
+                    console.log('Passengers:', document.getElementById('passengers').value);
+                    console.log('Class:', document.getElementById('class').value);
 
-                    // Filter flights based on origin and destination
-                    const filteredFlights = availableFlights.filter(flight => {
-                        const matchesOrigin = originInput === '' || flight.origin === originInput;
-                        const matchesDestination = destinationInput === '' || flight.destination === destinationInput;
-                        return matchesOrigin && matchesDestination;
-                    });
+                    // Hide the form and show the success message
+                    flightBookingForm.classList.add('hidden');
+                    bookingSuccessMessageDiv.classList.remove('hidden');
 
-                    // Render filtered flights
-                    renderFlights(filteredFlights);
-
-                    // Show the flight results section
-                    flightResultsDiv.classList.remove('hidden');
-
-                    // Scroll to the results section smoothly
-                    flightResultsDiv.scrollIntoView({ behavior: 'smooth' });
+                    // Scroll to the success message smoothly
+                    bookingSuccessMessageDiv.scrollIntoView({ behavior: 'smooth' });
                 });
             }
 
@@ -605,7 +579,7 @@
             // Your Discord Client ID from the Discord Developer Portal
             const CLIENT_ID = "1396149795470446692";
             // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
-            const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/";
+            const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/flightbooking.html"; // Updated redirect URI for flight booking page
 
             // Discord authorization URL - CRITICAL: Changed response_type to 'token'
             const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
