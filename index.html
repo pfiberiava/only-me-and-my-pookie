@@ -87,21 +87,33 @@
         .discord-login-btn svg {
             @apply w-6 h-6; /* Larger icon */
         }
-        .user-info {
-            @apply flex items-center space-x-2 p-2 rounded-full bg-gray-700 text-white;
-        }
-        .user-info img {
-            @apply w-8 h-8 rounded-full border border-gray-600;
-        }
-        .user-info span {
-            @apply font-medium text-sm;
-        }
-        .logout-button {
-            @apply ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-full transition duration-300;
-        }
-        .logout-button:hover {
-            background-color: #B91C1C; /* Darker red on hover */
-        }
+          .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-text);
+      font-weight: 600;
+    }
+    .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid var(--highlight);
+    }
+    .logout-button {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .logout-button:hover {
+      background-color: #c42020;
+    }
+
         /* From Uiverse.io by vinodjangid07 */ 
 .Btn {
   width: 45px;
