@@ -172,270 +172,309 @@
             background-color: rgba(214, 214, 214, 0.466);
             backdrop-filter: blur(4px);
         }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0F172A; /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* High z-index to cover everything */
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-container {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 5px solid #DC2626; /* Red border for emphasis */
+        }
+        .video-container iframe {
+            display: block; /* Remove extra space below iframe */
+        }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <!-- Header -->
-    <header class="bg-gray-900 shadow-lg fixed w-full z-10">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo/Brand -->
-            <div class="flex items-center">
-                <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
-                <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
-                    Iberia VA
-                </a>
-            </div>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="video-container">
+            <video src="iberia animation.gif" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay"></video>
+        </div>
+        <p class="text-xl font-semibold text-white">Loading...</p>
+    </div>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
-                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
-            </div>
+    <!-- Main Content Wrapper (all existing content goes inside here) -->
+    <div id="main-content" style="display: none;">
+        <!-- Header -->
+        <header class="bg-gray-900 shadow-lg fixed w-full z-10">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Logo/Brand -->
+                <div class="flex items-center">
+                    <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
+                    <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
+                        Iberia VA
+                    </a>
+                </div>
 
-            <!-- Discord Auth Section for Desktop -->
-            <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
-                <!-- Content injected by JS -->
-            </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
+                    <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Book a Flight</a>
+                    <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
+                </div>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-300 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2">
-                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
-            <div class="flex flex-col items-center space-y-4">
-                <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
-                <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
-                <!-- Discord Auth Section for Mobile -->
-                <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
+                <!-- Discord Auth Section for Desktop -->
+                <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
                     <!-- Content injected by JS -->
                 </div>
-            </div>
-        </div>
-    </header>
 
-    <main class="pt-20"> <!-- Padding to account for fixed header -->
-        <!-- Flight Booking Section -->
-        <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Book Your Flight with Iberia VA</h1>
-                <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
-                    Search for your perfect route and start your virtual journey with us today.
-                </p>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2">
+                        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+            </nav>
 
-                <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('https://cdn.discordapp.com/attachments/1360096616454819841/1381007276193874050/image.png?ex=687dfa80&is=687ca900&hm=e95a5bd1855bad213f1c15978d3e506ce77ac547d1882ffd005cc4930725e5e4&'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
-                    <!-- Message for not logged in users -->
-                    <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
-                        <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
-                        <p class="text-gray-200">You need to be logged in with Discord to access the flight booking system.</p>
-                        <div id="login-button-container" class="mt-6 flex justify-center">
-                            <!-- Discord login button will be rendered here by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Flight Booking Form -->
-                    <form id="flight-booking-form" action="https://formcarry.com/s/gcVYP6CKIN5" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                        <!-- Origin Airport -->
-                        <div>
-                            <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
-                                Origin Airport (ICAO)
-                            </label>
-                            <select
-                                id="origin"
-                                name="origin"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                required
-                            >
-                                <option value="">Select an Origin</option>
-                                <!-- Options will be dynamically populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <!-- Destination Airport -->
-                        <div>
-                            <label for="destination" class="block text-gray-300 text-sm font-bold mb-2">
-                                Destination Airport (ICAO)
-                            </label>
-                            <select
-                                id="destination"
-                                name="destination"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                required
-                            >
-                                <option value="">Select a Destination</option>
-                                <!-- Options will be dynamically populated by JavaScript -->
-                            </select>
-                        </div>
-
-                        <!-- Departure Date -->
-                        <div>
-                            <label for="departure-date" class="block text-gray-300 text-sm font-bold mb-2">
-                                Departure Date
-                            </label>
-                            <input
-                                type="date"
-                                id="departure-date"
-                                name="departure-date"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                required
-                            />
-                        </div>
-
-                        <!-- Return Date (Optional) -->
-                        <div>
-                            <label for="return-date" class="block text-gray-300 text-sm font-bold mb-2">
-                                Return Date (Optional)
-                            </label>
-                            <input
-                                type="date"
-                                id="return-date"
-                                name="return-date"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                            />
-                        </div>
-
-                        <!-- Number of Passengers -->
-                        <div>
-                            <label for="passengers" class="block text-gray-300 text-sm font-bold mb-2">
-                                Number of Passengers
-                            </label>
-                            <input
-                                type="number"
-                                id="passengers"
-                                name="passengers"
-                                min="1"
-                                value="1"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                required
-                            />
-                        </div>
-
-                        <!-- Class -->
-                        <div>
-                            <label for="class" class="block text-gray-300 text-sm font-bold mb-2">
-                                Class
-                            </label>
-                            <select
-                                id="class"
-                                name="class"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                            >
-                                <option value="economy">Economy</option>
-                                <option value="business">Business</option>
-                                <option value="first">First Class</option>
-                            </select>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="md:col-span-2 flex justify-center mt-6">
-                            <button
-                                type="submit"
-                                class="btn-primary flex items-center justify-center"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                                Book Flight
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Booking Success Message -->
-                    <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
-                        <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
-                        <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
+                <div class="flex flex-col items-center space-y-4">
+                    <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
+                    <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Book a Flight</a>
+                    <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
+                    <!-- Discord Auth Section for Mobile -->
+                    <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
+                        <!-- Content injected by JS -->
                     </div>
                 </div>
             </div>
-        </section>
+        </header>
 
+        <main class="pt-20"> <!-- Padding to account for fixed header -->
+            <!-- Flight Booking Section -->
+            <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Book Your Flight with Iberia VA</h1>
+                    <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+                        Search for your perfect route and start your virtual journey with us today.
+                    </p>
 
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('https://cdn.discordapp.com/attachments/1360096616454819841/1381007276193874050/image.png?ex=687dfa80&is=687ca900&hm=e95a5bd1855bad213f1c15978d3e506ce77ac547d1882ffd005cc4930725e5e4&'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
+                        <!-- Message for not logged in users -->
+                        <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
+                            <p class="text-gray-200">You need to be logged in with Discord to access the flight booking system.</p>
+                            <div id="login-button-container" class="mt-6 flex justify-center">
+                                <!-- Discord login button will be rendered here by JS -->
+                            </div>
+                        </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-slate-900">
+                        <!-- Flight Booking Form -->
+                        <form id="flight-booking-form" action="https://formcarry.com/s/gcVYP6CKIN5" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                            <!-- Origin Airport -->
+                            <div>
+                                <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Origin Airport (ICAO)
+                                </label>
+                                <select
+                                    id="origin"
+                                    name="origin"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                >
+                                    <option value="">Select an Origin</option>
+                                    <!-- Options will be dynamically populated by JavaScript -->
+                                </select>
+                            </div>
+
+                            <!-- Destination Airport -->
+                            <div>
+                                <label for="destination" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Destination Airport (ICAO)
+                                </label>
+                                <select
+                                    id="destination"
+                                    name="destination"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                >
+                                    <option value="">Select a Destination</option>
+                                    <!-- Options will be dynamically populated by JavaScript -->
+                                </select>
+                            </div>
+
+                            <!-- Departure Date -->
+                            <div>
+                                <label for="departure-date" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Departure Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="departure-date"
+                                    name="departure-date"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Return Date (Optional) -->
+                            <div>
+                                <label for="return-date" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Return Date (Optional)
+                                </label>
+                                <input
+                                    type="date"
+                                    id="return-date"
+                                    name="return-date"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                />
+                            </div>
+
+                            <!-- Number of Passengers -->
+                            <div>
+                                <label for="passengers" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Number of Passengers
+                                </label>
+                                <input
+                                    type="number"
+                                    id="passengers"
+                                    name="passengers"
+                                    min="1"
+                                    value="1"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                />
+                            </div>
+
+                            <!-- Class -->
+                            <div>
+                                <label for="class" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Class
+                                </label>
+                                <select
+                                    id="class"
+                                    name="class"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                >
+                                    <option value="economy">Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="md:col-span-2 flex justify-center mt-6">
+                                <button
+                                    type="submit"
+                                    class="btn-primary flex items-center justify-center"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    Book Flight
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Booking Success Message -->
+                        <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
+                            <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-16 bg-slate-900">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl font-bold text-white mb-8">Need help?</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Have inquiries, suggestions, or ready to join our community? We're here to help.
+                    </p>
+                    <div class="flex justify-center">
+                        <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Your Name"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="your@example.com"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 resize-y"
+                                    placeholder="Your message here..."
+                                    required
+                                ></textarea>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <button
+                                    type="submit"
+                                    class="btn-primary flex items-center"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTopBtn" title="Go to top">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+        </button>
+
+        <!-- Footer -->
+        <footer class="bg-gray-950 text-gray-400 py-8">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-white mb-8">Need help?</h2>
-                <p class="text-lg text-gray-300 mb-8">
-                    Have inquiries, suggestions, or ready to join our community? We're here to help.
-                </p>
-                <div class="flex justify-center">
-                    <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                Name
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="Your Name"
-                                required
-                            />
-                        </div>
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                placeholder="your@example.com"
-                                required
-                            />
-                        </div>
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                Message
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                rows="5"
-                                class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 resize-y"
-                                placeholder="Your message here..."
-                                required
-                            ></textarea>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <button
-                                type="submit"
-                                class="btn-primary flex items-center"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
+                <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.instagram.com/iberiava_pf/" class="hover:text-white transition duration-300">Instagram</a>
+                    <a href="https://www.youtube.com/channel/UCahgitUZD7SNT2pVCie3ymQ" class="hover:text-white transition duration-300">Youtube</a>
+                    <a href="https://discord.gg/vcfDHnpK22" class="hover:text-white transition duration-300">Discord</a>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" title="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-    </button>
-
-    <!-- Footer -->
-    <footer class="bg-gray-950 text-gray-400 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://www.instagram.com/iberiava_pf/" class="hover:text-white transition duration-300">Instagram</a>
-                <a href="https://www.youtube.com/channel/UCahgitUZD7SNT2pVCie3ymQ" class="hover:text-white transition duration-300">Youtube</a>
-                <a href="https://discord.gg/vcfDHnpK22" class="hover:text-white transition duration-300">Discord</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div> <!-- End of main-content wrapper -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -480,6 +519,22 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
+            // Loading Screen Logic
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            // The video is short, around 5-6 seconds. Set a timeout slightly longer.
+            const videoDurationMs = 6500; // 6.5 seconds
+
+            // Hide main content initially
+            mainContent.style.display = 'none';
+
+            // After the estimated video duration, hide the loading screen and show main content
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+            }, videoDurationMs);
+
+
             // Flight data based on your provided routes
             const availableFlights = [
                 // Long Routes (A350 or A320)
@@ -494,10 +549,10 @@
             ];
 
             const flightBookingForm = document.getElementById('flight-booking-form');
-            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); // Renamed from flightResultsDiv
+            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); 
             const loginRequiredMessage = document.getElementById('login-required-message');
             const loginButtonContainer = document.getElementById('login-button-container');
-            const originSelect = document.getElementById('origin'); // New origin select element
+            const originSelect = document.getElementById('origin'); 
             const destinationSelect = document.getElementById('destination');
             const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
 
@@ -579,7 +634,7 @@
             // Your Discord Client ID from the Discord Developer Portal
             const CLIENT_ID = "1396149795470446692";
             // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
-            const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/"; // Updated redirect URI for flight booking page
+            const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/flightbooking.html"; // Updated redirect URI for flight booking page
 
             // Discord authorization URL - CRITICAL: Changed response_type to 'token'
             const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
