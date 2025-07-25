@@ -80,7 +80,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Form Container */
+        /* Form Container (This box now holds either the form or the login message) */
         .form-container-sleek {
             background-color: rgba(26,32,44, 0.9); /* Slightly more opaque for readability */
             padding: 2.5rem;
@@ -128,7 +128,7 @@
             transform: translateY(-3px);
         }
 
-        /* Discord Login Button and User Info Styling (retained with minor tweaks) */
+        /* Discord Login Button and User Info Styling */
         .discord-login-btn {
             @apply flex items-center justify-center space-x-2 px-6 py-3 rounded-full text-base font-semibold;
             background-color: var(--color-discord-blue);
@@ -173,8 +173,8 @@
 
         /* Custom Discord Button (from Uiverse.io - slightly adjusted) */
         .Btn {
-            width: 45px;
-            height: 45px;
+            width: 45px; /* Adjust size if needed */
+            height: 45px; /* Adjust size if needed */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -219,7 +219,7 @@
             backdrop-filter: blur(4px);
         }
 
-        /* Loading Screen Styles (improved slightly) */
+        /* Loading Screen Styles */
         #loading-screen {
             position: fixed;
             top: 0;
@@ -233,24 +233,13 @@
             z-index: 9999;
             flex-direction: column;
             gap: 20px;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition for hiding */
         }
-        /* Remove video-container styles if you truly don't have a video/gif */
-        /*
-        .video-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            border: 5px solid var(--color-primary-red);
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; /* Make it unclickable when hidden */
         }
-        .video-container video {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        */
         #loading-screen p {
             color: var(--color-text-dark);
         }
@@ -303,12 +292,12 @@
             @apply bg-red-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-700 transition duration-300;
         }
 
-        /* Login Required Message */
+        /* Login Required Message - Adjusted to fit inside form-container-sleek */
         #loginRequiredMessage {
-            @apply text-center text-xl text-red-400 p-8 rounded-lg bg-slate-800 shadow-xl border border-red-700 flex flex-col items-center gap-6;
+            @apply text-center flex flex-col items-center gap-6 py-8; /* Added padding, removed redundant bg/shadow/border */
         }
-        #loginRequiredMessage .Btn {
-            margin-top: 1rem; /* Space between text and button */
+        #loginRequiredMessage p {
+            @apply text-xl text-red-400 font-semibold mb-6; /* Ensure text styling is consistent */
         }
     </style>
 </head>
@@ -316,10 +305,9 @@
 
     <div id="loading-screen">
         <p class="text-xl font-semibold">Loading content...</p>
-    </div>
+        </div>
 
-    <div id="main-content" style="display: none;">
-        <header class="bg-gray-900 shadow-lg fixed w-full z-10 bg-opacity-90 backdrop-filter backdrop-blur-sm">
+    <div id="main-content" class="hidden"> <header class="bg-gray-900 shadow-lg fixed w-full z-10 bg-opacity-90 backdrop-filter backdrop-blur-sm">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center">
                     <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
@@ -363,27 +351,27 @@
                     Plan your next virtual journey with Iberia VA. Select your departure, arrival, and flight details below.
                 </p>
 
-                <div id="loginRequiredMessage" class="hidden">
-                    <p class="font-semibold">Please log in with Discord to book a flight.</p>
-                    <div id="loginButtonContainer">
-                        </div>
-                </div>
-
                 <div class="max-w-xl mx-auto form-container-sleek">
-                    <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6">
+                    <div id="loginRequiredMessage" class="hidden">
+                        <p class="font-semibold text-xl text-red-400 mb-6">Please log in with Discord to book a flight.</p>
+                        <div id="loginButtonContainer" class="flex justify-center">
+                            </div>
+                    </div>
+
+                    <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6 hidden">
                         <input type="hidden" name="Discord Username" id="discordUsernameHidden">
                         <div>
                             <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
                             <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
                                 <option value="">Select Departure Airport</option>
-                            </select>
+                                </select>
                         </div>
 
                         <div>
                             <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
                             <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
                                 <option value="">Select Arrival Airport</option>
-                            </select>
+                                </select>
                         </div>
 
                         <div>
@@ -484,19 +472,19 @@
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
 
-            // Ensure main content is hidden initially
+            // Ensure main content is hidden initially in JS for control
             if (mainContent) {
-                mainContent.style.display = 'none';
+                mainContent.classList.add('hidden'); // Use class for smoother transition
             }
 
             // Hide loading screen and show main content after a fixed delay
             // A delay of 1000-1500ms (1-1.5 seconds) is usually good to ensure everything loads
             setTimeout(() => {
                 if (loadingScreen) {
-                    loadingScreen.style.display = 'none';
+                    loadingScreen.classList.add('hidden'); // Add hidden class for transition
                 }
                 if (mainContent) {
-                    mainContent.style.display = 'block';
+                    mainContent.classList.remove('hidden'); // Remove hidden class to show
                 }
             }, 1500); // 1.5 seconds delay
 
@@ -551,7 +539,11 @@
                 });
             }
 
-            populateAirportSelects();
+            // Populate selects only if they exist (i.e., form is not hidden)
+            if (originSelect && destinationSelect) {
+                populateAirportSelects();
+            }
+
 
             // Function to enable/disable form fields
             function toggleFormFields(enable) {
@@ -580,57 +572,60 @@
 
 
             // Handle form submission
-            flightBookingForm.addEventListener('submit', async (event) => {
-                event.preventDefault(); // Prevent default form submission
+            if (flightBookingForm) { // Only attach listener if form exists
+                flightBookingForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); // Prevent default form submission
 
-                const origin = originSelect.value;
-                const destination = destinationSelect.value;
-                const flightDate = document.getElementById('flight-date').value;
-                const passengers = document.getElementById('passengers').value;
-                const flightClass = document.getElementById('flight-class').value; // Get the selected class
+                    const origin = originSelect.value;
+                    const destination = destinationSelect.value;
+                    const flightDate = document.getElementById('flight-date').value;
+                    const passengers = document.getElementById('passengers').value;
+                    const flightClass = document.getElementById('flight-class').value; // Get the selected class
 
-                // Basic validation
-                if (origin === "" || destination === "" || flightDate === "" || passengers === "" || flightClass === "") {
-                    showMessageBox("Validation Error", "Please fill in all flight details.");
-                    return;
-                }
-
-                if (origin === destination) {
-                    showMessageBox("Invalid Route", "Departure and Arrival airports cannot be the same. Please select different airports.");
-                    return;
-                }
-
-                // Use FormData to easily get all form data
-                const formData = new FormData(flightBookingForm);
-
-                try {
-                    const response = await fetch(flightBookingForm.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json' // Important for Formcarry to return JSON
-                        }
-                    });
-
-                    if (response.ok) {
-                        showMessageBox("Booking Submitted!", "Your flight booking request has been successfully sent. We will get back to you shortly!");
-                        flightBookingForm.reset(); // Clear form after successful submission
-                        populateAirportSelects(); // Re-populate to reset dropdowns correctly
-                        document.getElementById('passengers').value = "1"; // Reset passenger count
-                        document.getElementById('flight-class').value = "Economy"; // Reset class
-                    } else {
-                        const data = await response.json();
-                        if (data.errors) {
-                            showMessageBox("Submission Failed", `There was an issue with your submission: ${data.errors.map(err => err.message).join(', ')}. Please try again.`);
-                        } else {
-                            showMessageBox("Submission Failed", "There was an error submitting your booking. Please try again later.");
-                        }
+                    // Basic validation
+                    if (origin === "" || destination === "" || flightDate === "" || passengers === "" || flightClass === "") {
+                        showMessageBox("Validation Error", "Please fill in all flight details.");
+                        return;
                     }
-                } catch (error) {
-                    console.error('Error submitting form:', error);
-                    showMessageBox("Submission Error", "An unexpected error occurred. Please check your internet connection and try again.");
-                }
-            });
+
+                    if (origin === destination) {
+                        showMessageBox("Invalid Route", "Departure and Arrival airports cannot be the same. Please select different airports.");
+                        return;
+                    }
+
+                    // Use FormData to easily get all form data
+                    const formData = new FormData(flightBookingForm);
+
+                    try {
+                        const response = await fetch(flightBookingForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json' // Important for Formcarry to return JSON
+                            }
+                        });
+
+                        if (response.ok) {
+                            showMessageBox("Booking Submitted!", "Your flight booking request has been successfully sent. We will get back to you shortly!");
+                            flightBookingForm.reset(); // Clear form after successful submission
+                            populateAirportSelects(); // Re-populate to reset dropdowns correctly
+                            document.getElementById('passengers').value = "1"; // Reset passenger count
+                            document.getElementById('flight-class').value = "Economy"; // Reset class
+                        } else {
+                            const data = await response.json();
+                            if (data.errors) {
+                                showMessageBox("Submission Failed", `There was an issue with your submission: ${data.errors.map(err => err.message).join(', ')}. Please try again.`);
+                            } else {
+                                showMessageBox("Submission Failed", "There was an error submitting your booking. Please try again later.");
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error submitting form:', error);
+                        showMessageBox("Submission Error", "An unexpected error occurred. Please check your internet connection and try again.");
+                    }
+                });
+            }
+
 
             // Close message box when button is clicked
             messageBoxCloseButton.addEventListener('click', hideMessageBox);
@@ -667,9 +662,11 @@
                         };
                     }
                 });
+                // Hide login message, show form
                 if (loginRequiredMessage) loginRequiredMessage.classList.add('hidden');
                 if (flightBookingForm) flightBookingForm.classList.remove('hidden');
                 toggleFormFields(true);
+                populateAirportSelects(); // Re-populate to ensure options are there when shown
             }
 
             function showLoginButton() {
@@ -685,6 +682,7 @@
                         </a>
                     `;
                 });
+                // Show login message, hide form
                 if (loginRequiredMessage) {
                     loginRequiredMessage.classList.remove('hidden');
                     const loginBtnHtml = `
