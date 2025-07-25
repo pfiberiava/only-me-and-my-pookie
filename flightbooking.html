@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iberia VA - Book Flight</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Poppins for headings, Inter for body -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" type="image/png">
     <style>
@@ -195,25 +197,27 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             border: 5px solid #DC2626; /* Red border for emphasis */
         }
-        .video-container video { /* Changed from iframe to video */
+        .video-container iframe {
             display: block; /* Remove extra space below iframe */
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the video covers the container */
         }
     </style>
 </head>
 <body class="min-h-screen">
 
+    <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="video-container">
-            <video src="iberia animation.gif" autoplay loop muted playsinline frameborder="0" width="100%" height="100%"></video> </div>
+            <video src="iberia animation.gif" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay"></video>
+        </div>
         <p class="text-xl font-semibold text-white">Loading...</p>
     </div>
 
+    <!-- Main Content Wrapper (all existing content goes inside here) -->
     <div id="main-content" style="display: none;">
+        <!-- Header -->
         <header class="bg-gray-900 shadow-lg fixed w-full z-10">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <!-- Logo/Brand -->
                 <div class="flex items-center">
                     <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
                     <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
@@ -221,15 +225,19 @@
                     </a>
                 </div>
 
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
                     <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Book a Flight</a>
                     <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
                 </div>
 
+                <!-- Discord Auth Section for Desktop -->
                 <div id="desktop-user-actions" class="user-actions hidden md:flex items-center space-x-2">
-                    </div>
+                    <!-- Content injected by JS -->
+                </div>
 
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-300 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-md p-2">
                         <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -238,18 +246,23 @@
                 </div>
             </nav>
 
+            <!-- Mobile Menu -->
             <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
                 <div class="flex flex-col items-center space-y-4">
                     <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
                     <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Book a Flight</a>
                     <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
+                    <!-- Discord Auth Section for Mobile -->
                     <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
-                        </div>
+                        <!-- Content injected by JS -->
+                    </div>
                 </div>
             </div>
         </header>
 
-        <main class="pt-20"> <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center bg-opacity-80">
+        <main class="pt-20"> <!-- Padding to account for fixed header -->
+            <!-- Flight Booking Section -->
+            <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center">
                 <div class="container mx-auto px-6 text-center">
                     <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Book Your Flight with Iberia VA</h1>
                     <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
@@ -257,14 +270,18 @@
                     </p>
 
                     <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('https://cdn.discordapp.com/attachments/1360096616454819841/1381007276193874050/image.png?ex=687dfa80&is=687ca900&hm=e95a5bd1855bad213f1c15978d3e506ce77ac547d1882ffd005cc4930725e5e4&'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
+                        <!-- Message for not logged in users -->
                         <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
                             <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
                             <p class="text-gray-200">You need to be logged in with Discord to access the flight booking system.</p>
                             <div id="login-button-container" class="mt-6 flex justify-center">
-                                </div>
+                                <!-- Discord login button will be rendered here by JS -->
+                            </div>
                         </div>
 
-                        <form id="flight-booking-form" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                        <!-- Flight Booking Form -->
+                        <form id="flight-booking-form" action="https://formcarry.com/s/gcVYP6CKIN5" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                            <!-- Origin Airport -->
                             <div>
                                 <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
                                     Origin Airport (ICAO)
@@ -276,9 +293,11 @@
                                     required
                                 >
                                     <option value="">Select an Origin</option>
-                                    </select>
+                                    <!-- Options will be dynamically populated by JavaScript -->
+                                </select>
                             </div>
 
+                            <!-- Destination Airport -->
                             <div>
                                 <label for="destination" class="block text-gray-300 text-sm font-bold mb-2">
                                     Destination Airport (ICAO)
@@ -290,9 +309,11 @@
                                     required
                                 >
                                     <option value="">Select a Destination</option>
-                                    </select>
+                                    <!-- Options will be dynamically populated by JavaScript -->
+                                </select>
                             </div>
 
+                            <!-- Departure Date -->
                             <div>
                                 <label for="departure-date" class="block text-gray-300 text-sm font-bold mb-2">
                                     Departure Date
@@ -306,6 +327,7 @@
                                 />
                             </div>
 
+                            <!-- Return Date (Optional) -->
                             <div>
                                 <label for="return-date" class="block text-gray-300 text-sm font-bold mb-2">
                                     Return Date (Optional)
@@ -318,6 +340,7 @@
                                 />
                             </div>
 
+                            <!-- Number of Passengers -->
                             <div>
                                 <label for="passengers" class="block text-gray-300 text-sm font-bold mb-2">
                                     Number of Passengers
@@ -333,6 +356,7 @@
                                 />
                             </div>
 
+                            <!-- Class -->
                             <div>
                                 <label for="class" class="block text-gray-300 text-sm font-bold mb-2">
                                     Class
@@ -348,25 +372,7 @@
                                 </select>
                             </div>
 
-                            <div class="md:col-span-2 text-center mt-4 p-4 border border-gray-700 rounded-md bg-gray-800 hidden" id="selected-flight-info">
-                                <h3 class="text-xl font-bold text-white mb-2">Selected Flight Details:</h3>
-                                <p class="text-gray-300"><span class="font-semibold">Flight Number:</span> <span id="display-flight-number"></span></p>
-                                <p class="text-gray-300"><span class="font-semibold">Route:</span> <span id="display-route"></span></p>
-                                <p class="text-gray-300"><span class="font-semibold">Aircraft:</span> <span id="display-aircraft"></span></p>
-                                <p class="text-gray-300"><span class="font-semibold">Departure Time:</span> <span id="display-departure-time"></span></p>
-                                <p class="text-gray-300"><span class="font-semibold">Arrival Time:</span> <span id="display-arrival-time"></span></p>
-                                <p class="text-gray-300"><span class="font-semibold">Estimated Price:</span> $<span id="display-price"></span></p>
-                                <input type="hidden" id="hidden-flight-number" name="flightNumber">
-                                <input type="hidden" id="hidden-origin-name" name="originName">
-                                <input type="hidden" id="hidden-destination-name" name="destinationName">
-                                <input type="hidden" id="hidden-aircraft" name="aircraft">
-                                <input type="hidden" id="hidden-departure-time" name="departureTime">
-                                <input type="hidden" id="hidden-arrival-time" name="arrivalTime">
-                                <input type="hidden" id="hidden-discord-username" name="discordUsername">
-                                <input type="hidden" id="hidden-discord-id" name="discordId">
-                            </div>
-
-
+                            <!-- Submit Button -->
                             <div class="md:col-span-2 flex justify-center mt-6">
                                 <button
                                     type="submit"
@@ -380,6 +386,7 @@
                             </div>
                         </form>
 
+                        <!-- Booking Success Message -->
                         <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
                             <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
                             <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
@@ -388,14 +395,15 @@
                 </div>
             </section>
 
-            <section id="contact" class="py-16 bg-slate-900 bg-opacity-80">
+            <!-- Contact Section -->
+            <section id="contact" class="py-16 bg-slate-900">
                 <div class="container mx-auto px-6 text-center">
                     <h2 class="text-4xl font-bold text-white mb-8">Need help?</h2>
                     <p class="text-lg text-gray-300 mb-8">
                         Have inquiries, suggestions, or ready to join our community? We're here to help.
                     </p>
                     <div class="flex justify-center">
-                        <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
+                        <form action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
                             <div class="mb-6">
                                 <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
                                     Name
@@ -450,10 +458,12 @@
             </section>
         </main>
 
+        <!-- Scroll to Top Button -->
         <button id="scrollToTopBtn" title="Go to top">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
         </button>
 
+        <!-- Footer -->
         <footer class="bg-gray-950 text-gray-400 py-8">
             <div class="container mx-auto px-6 text-center">
                 <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
@@ -464,7 +474,9 @@
                 </div>
             </div>
         </footer>
-    </div> <script>
+    </div> <!-- End of main-content wrapper -->
+
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Get the current year for the footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -543,19 +555,6 @@
             const originSelect = document.getElementById('origin'); 
             const destinationSelect = document.getElementById('destination');
             const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
-            const selectedFlightInfoDiv = document.getElementById('selected-flight-info');
-
-            // Hidden fields for FormCarry
-            const hiddenFlightNumber = document.getElementById('hidden-flight-number');
-            const hiddenOriginName = document.getElementById('hidden-origin-name');
-            const hiddenDestinationName = document.getElementById('hidden-destination-name');
-            const hiddenAircraft = document.getElementById('hidden-aircraft');
-            const hiddenDepartureTime = document.getElementById('hidden-departure-time');
-            const hiddenArrivalTime = document.getElementById('hidden-arrival-time');
-            const hiddenPrice = document.getElementById('hidden-price');
-            const hiddenDiscordUsername = document.getElementById('hidden-discord-username');
-            const hiddenDiscordId = document.getElementById('hidden-discord-id');
-
 
             // Function to enable/disable form fields
             function toggleFormFields(enable) {
@@ -586,275 +585,173 @@
                 });
             }
 
-            // Function to populate destination dropdown based on selected origin
-            function populateDestinationDropdown(selectedOrigin) {
+            // Function to populate destination dropdown
+            function populateDestinationDropdown() {
+                const uniqueDestinations = new Map();
+                availableFlights.forEach(flight => {
+                    uniqueDestinations.set(flight.destination, flight.destinationName);
+                });
+
                 destinationSelect.innerHTML = '<option value="">Select a Destination</option>';
-                if (selectedOrigin) {
-                    const possibleDestinations = new Map();
-                    availableFlights.forEach(flight => {
-                        if (flight.origin === selectedOrigin) {
-                            possibleDestinations.set(flight.destination, flight.destinationName);
-                        }
-                    });
-
-                    possibleDestinations.forEach((name, icao) => {
-                        const option = document.createElement('option');
-                        option.value = icao;
-                        option.textContent = `${icao} (${name})`;
-                        destinationSelect.appendChild(option);
-                    });
-                }
-            }
-
-            // Function to update flight details display
-            function updateFlightDetailsDisplay() {
-                const selectedOrigin = originSelect.value;
-                const selectedDestination = destinationSelect.value;
-
-                if (selectedOrigin && selectedDestination) {
-                    const matchingFlight = availableFlights.find(flight => 
-                        flight.origin === selectedOrigin && flight.destination === selectedDestination
-                    );
-
-                    if (matchingFlight) {
-                        document.getElementById('display-flight-number').textContent = matchingFlight.flightNumber;
-                        document.getElementById('display-route').textContent = `${matchingFlight.originName} to ${matchingFlight.destinationName}`;
-                        document.getElementById('display-aircraft').textContent = matchingFlight.aircraft;
-                        document.getElementById('display-departure-time').textContent = matchingFlight.departureTime;
-                        document.getElementById('display-arrival-time').textContent = matchingFlight.arrivalTime;
-                        document.getElementById('display-price').textContent = matchingFlight.price.toFixed(2);
-                        selectedFlightInfoDiv.classList.remove('hidden');
-
-                        // Set hidden form fields for FormCarry
-                        hiddenFlightNumber.value = matchingFlight.flightNumber;
-                        hiddenOriginName.value = matchingFlight.originName;
-                        hiddenDestinationName.value = matchingFlight.destinationName;
-                        hiddenAircraft.value = matchingFlight.aircraft;
-                        hiddenDepartureTime.value = matchingFlight.departureTime;
-                        hiddenArrivalTime.value = matchingFlight.arrivalTime;
-                        hiddenPrice.value = matchingFlight.price;
-
-                    } else {
-                        selectedFlightInfoDiv.classList.add('hidden');
-                        alert('No direct flight found for this route. Please try another combination.');
-                    }
-                } else {
-                    selectedFlightInfoDiv.classList.add('hidden');
-                }
-            }
-
-            // Event listeners for dropdowns
-            if (originSelect) {
-                originSelect.addEventListener('change', (event) => {
-                    populateDestinationDropdown(event.target.value);
-                    updateFlightDetailsDisplay();
-                });
-            }
-            if (destinationSelect) {
-                destinationSelect.addEventListener('change', updateFlightDetailsDisplay);
-            }
-
-            // Discord Authentication Logic
-            const CLIENT_ID = '1396149795470446692'; // Replace with your actual Discord Bot Client ID
-            const REDIRECT_URI = 'https://pfiberiava.github.io/flyibe/flightbooking.html'; // Ensure this matches your Discord app's redirect URI
-            const DISCORD_AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
-
-            let userLoggedIn = false;
-            let userData = null;
-
-            // Function to render the login button
-            function renderLoginButton() {
-                const loginBtnHtml = `
-                    <button id="discord-login-btn" class="discord-login-btn">
-                        <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-                            <path d="M20.22 0C21.2 0 22 0.79 22 1.78V18.22C22 19.21 21.2 20 20.22 20H1.78C0.79 20 0 19.21 0 18.22V1.78C0 0.79 0.79 0 1.78 0H20.22ZM7.72 14.18C6.67 14.18 5.76 13.25 5.76 12.18C5.76 11.12 6.67 10.18 7.72 10.18C8.78 10.18 9.68 11.12 9.68 12.18C9.68 13.25 8.78 14.18 7.72 14.18ZM14.28 14.18C13.22 14.18 12.18 13.25 12.18 12.18C12.18 11.12 13.22 10.18 14.28 10.18C15.33 10.18 16.24 11.12 16.24 12.18C16.24 13.25 15.33 14.18 14.28 14.18ZM16.6 6.88C16.6 7.42 16.09 7.82 15.54 7.82H6.46C5.91 7.82 5.4 7.42 5.4 6.88C5.4 6.33 5.91 5.94 6.46 5.94H15.54C16.09 5.94 16.6 6.33 16.6 6.88Z"></path>
-                        </svg>
-                        <span>Login with Discord</span>
-                    </button>
-                `;
-                document.getElementById('desktop-user-actions').innerHTML = loginBtnHtml;
-                document.getElementById('mobile-user-actions').innerHTML = loginBtnHtml;
-
-                document.getElementById('discord-login-btn').addEventListener('click', () => {
-                    window.location.href = DISCORD_AUTH_URL;
+                uniqueDestinations.forEach((name, icao) => {
+                    const option = document.createElement('option');
+                    option.value = icao;
+                    option.textContent = `${icao} (${name})`;
+                    destinationSelect.appendChild(option);
                 });
             }
 
-            // Function to render user info and logout button
-            function renderUserInfo(user) {
-                const userInfoHtml = `
-                    <div class="user-info">
-                        <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=80" alt="User Avatar">
-                        <span>${user.username}</span>
-                    </div>
-                    <button id="logout-btn" class="logout-button">Logout</button>
-                `;
-                document.getElementById('desktop-user-actions').innerHTML = userInfoHtml;
-                document.getElementById('mobile-user-actions').innerHTML = userInfoHtml;
+            // Initial population of dropdowns
+            populateOriginDropdown();
+            populateDestinationDropdown();
 
-                document.getElementById('logout-btn').addEventListener('click', () => {
-                    localStorage.removeItem('discord_access_token');
-                    localStorage.removeItem('discord_user_data');
-                    userLoggedIn = false;
-                    userData = null;
-                    checkLoginStatus();
-                });
-
-                // Update hidden fields for form submission
-                if (hiddenDiscordUsername && hiddenDiscordId) {
-                    hiddenDiscordUsername.value = user.username;
-                    hiddenDiscordId.value = user.id;
-                }
-            }
-
-            // Function to fetch user data from Discord API
-            async function fetchDiscordUser(accessToken) {
-                try {
-                    const response = await fetch('https://discord.com/api/users/@me', {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        }
-                    });
-                    if (!response.ok) {
-                        throw new Error(`Error fetching user data: ${response.statusText}`);
-                    }
-                    const user = await response.json();
-                    localStorage.setItem('discord_user_data', JSON.stringify(user));
-                    return user;
-                } catch (error) {
-                    console.error('Failed to fetch Discord user:', error);
-                    localStorage.removeItem('discord_access_token'); // Clear token if invalid
-                    localStorage.removeItem('discord_user_data');
-                    return null;
-                }
-            }
-
-            // Function to check login status
-            async function checkLoginStatus() {
-                const accessToken = localStorage.getItem('discord_access_token');
-                if (accessToken) {
-                    const storedUserData = localStorage.getItem('discord_user_data');
-                    if (storedUserData) {
-                        userData = JSON.parse(storedUserData);
-                        userLoggedIn = true;
-                        renderUserInfo(userData);
-                        loginRequiredMessage.classList.add('hidden');
-                        flightBookingForm.classList.remove('hidden'); // Show form
-                        toggleFormFields(true); // Enable form fields
-                        populateOriginDropdown(); // Populate dropdowns
-                    } else {
-                        // Access token exists but user data doesn't, fetch it
-                        userData = await fetchDiscordUser(accessToken);
-                        if (userData) {
-                            userLoggedIn = true;
-                            renderUserInfo(userData);
-                            loginRequiredMessage.classList.add('hidden');
-                            flightBookingForm.classList.remove('hidden'); // Show form
-                            toggleFormFields(true); // Enable form fields
-                            populateOriginDropdown(); // Populate dropdowns
-                        } else {
-                            userLoggedIn = false;
-                            renderLoginButton();
-                            loginRequiredMessage.classList.remove('hidden');
-                            flightBookingForm.classList.add('hidden'); // Hide form
-                            toggleFormFields(false); // Disable form fields
-                        }
-                    }
-                } else {
-                    userLoggedIn = false;
-                    renderLoginButton();
-                    loginRequiredMessage.classList.remove('hidden');
-                    flightBookingForm.classList.add('hidden'); // Hide form
-                    toggleFormFields(false); // Disable form fields
-                }
-            }
-
-            // Handle Discord OAuth Redirect
-            const hash = window.location.hash.substring(1);
-            const params = new URLSearchParams(hash);
-            const discordAccessToken = params.get('access_token');
-
-            if (discordAccessToken) {
-                localStorage.setItem('discord_access_token', discordAccessToken);
-                // Clear the hash from the URL for a cleaner look
-                window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
-                checkLoginStatus(); // Re-check status with the new token
-            } else {
-                checkLoginStatus(); // Initial check
-            }
-
-            // Form submission event listener
+            // Event listener for form submission
             if (flightBookingForm) {
-                flightBookingForm.addEventListener('submit', async (event) => {
+                flightBookingForm.addEventListener('submit', (event) => {
                     event.preventDefault(); // Prevent default form submission
 
-                    if (!userLoggedIn) {
-                        alert('You must be logged in with Discord to book a flight.');
-                        return;
-                    }
+                    // In a real application, you would send this data to a backend
+                    // For now, we'll just show a success message.
+                    console.log('Flight booking form submitted!');
+                    console.log('Origin:', originSelect.value);
+                    console.log('Destination:', destinationSelect.value);
+                    console.log('Departure Date:', document.getElementById('departure-date').value);
+                    console.log('Return Date:', document.getElementById('return-date').value);
+                    console.log('Passengers:', document.getElementById('passengers').value);
+                    console.log('Class:', document.getElementById('class').value);
 
-                    // Populate hidden fields right before submission
-                    const selectedOrigin = originSelect.value;
-                    const selectedDestination = destinationSelect.value;
-                    const matchingFlight = availableFlights.find(flight => 
-                        flight.origin === selectedOrigin && flight.destination === selectedDestination
-                    );
+                    // Hide the form and show the success message
+                    flightBookingForm.classList.add('hidden');
+                    bookingSuccessMessageDiv.classList.remove('hidden');
 
-                    if (matchingFlight) {
-                        hiddenFlightNumber.value = matchingFlight.flightNumber;
-                        hiddenOriginName.value = matchingFlight.originName;
-                        hiddenDestinationName.value = matchingFlight.destinationName;
-                        hiddenAircraft.value = matchingFlight.aircraft;
-                        hiddenDepartureTime.value = matchingFlight.departureTime;
-                        hiddenArrivalTime.value = matchingFlight.arrivalTime;
-                        hiddenPrice.value = matchingFlight.price;
-                    } else {
-                        alert('Please select a valid flight route.');
-                        return;
-                    }
+                    // Scroll to the success message smoothly
+                    bookingSuccessMessageDiv.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
 
-                    if (userData) {
-                        hiddenDiscordUsername.value = userData.username;
-                        hiddenDiscordId.value = userData.id;
-                    } else {
-                        alert('Discord user data not available. Please try logging in again.');
-                        return;
-                    }
-                    
-                    const formData = new FormData(flightBookingForm);
-                    
-                    try {
-                        const response = await fetch(flightBookingForm.action, {
-                            method: flightBookingForm.method,
-                            body: formData,
-                            headers: {
-                                'Accept': 'application/json' // Important for Formcarry to return JSON
-                            }
-                        });
 
-                        const result = await response.json();
+            // Discord Login Integration
+            // Your Discord Client ID from the Discord Developer Portal
+            const CLIENT_ID = "1396149795470446692";
+            // The Redirect URI must EXACTLY match what's configured in your Discord OAuth2 settings
+            const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/flightbooking.html"; // Updated redirect URI for flight booking page
 
-                        if (response.ok) {
-                            flightBookingForm.reset(); // Clear form fields
-                            selectedFlightInfoDiv.classList.add('hidden'); // Hide flight details
-                            bookingSuccessMessageDiv.classList.remove('hidden'); // Show success message
-                            // Optionally hide the form and show only success message
-                            // flightBookingForm.classList.add('hidden'); 
+            // Discord authorization URL - CRITICAL: Changed response_type to 'token'
+            const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
 
-                            // Hide success message after a few seconds
-                            setTimeout(() => {
-                                bookingSuccessMessageDiv.classList.add('hidden');
-                                // flightBookingForm.classList.remove('hidden'); // Show form again if desired
-                            }, 5000); 
-                        } else {
-                            console.error('Formcarry submission error:', result);
-                            alert('There was an error booking your flight. Please try again or contact support.');
-                        }
-                    } catch (error) {
-                        console.error('Network error during form submission:', error);
-                        alert('A network error occurred. Please check your internet connection and try again.');
+            // Select all divs where user actions will be displayed
+            const userActionsDivs = document.querySelectorAll(".user-actions");
+
+            // Function to display user information and the logout button
+            function showUser(user) {
+                const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png';
+                userActionsDivs.forEach(div => {
+                    div.innerHTML = `
+                        <div class="user-info">
+                            <img src="${avatarUrl}" alt="User Avatar">
+                            <span>${user.username}</span>
+                            <button class="logout-button">Logout</button>
+                        </div>
+                    `;
+                    const logoutButton = div.querySelector(".logout-button");
+                    if (logoutButton) {
+                        logoutButton.onclick = () => {
+                            localStorage.removeItem("discordUser");
+                            window.location.href = REDIRECT_URI; // Reload to reset state and clear URL hash
+                        };
                     }
                 });
+                // Hide login message and enable form
+                if (loginRequiredMessage) loginRequiredMessage.classList.add('hidden');
+                if (flightBookingForm) flightBookingForm.classList.remove('hidden');
+                toggleFormFields(true);
+            }
+
+            // Function to display the Discord login button
+            function showLoginButton() {
+                userActionsDivs.forEach(div => {
+                    div.innerHTML = `
+                       <a href="${AUTH_URL}"  class="Btn">
+      <span class="svgContainer">
+        <svg
+          viewBox="0 0 640 512"
+          fill="white"
+          height="1.4em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
+          ></path>
+        </svg>
+      </span>
+      <span class="BG"></span>
+    </a>
+                    `;
+                });
+                // Display login message and disable form
+                if (loginRequiredMessage) {
+                    loginRequiredMessage.classList.remove('hidden');
+                    // Ensure the login button is rendered inside the message div
+                    const loginBtnHtml = `
+                       <a href="${AUTH_URL}" class="Btn">
+                            <span class="svgContainer">
+                                <svg viewBox="0 0 640 512" fill="white" height="1.4em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"></path>
+                                </svg>
+                            </span>
+                            <span class="BG"></span>
+                        </a>
+                    `;
+                    if (loginButtonContainer) loginButtonContainer.innerHTML = loginBtnHtml;
+                }
+                if (flightBookingForm) flightBookingForm.classList.add('hidden');
+                toggleFormFields(false);
+            }
+
+            // --- Main login state management logic ---
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const token = params.get("access_token"); // We are now expecting 'access_token'
+
+            const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+
+            if (token) {
+                // If a token is present in the URL (after a new Discord login)
+                window.history.replaceState({}, document.title, REDIRECT_URI); // Clean the URL
+
+                fetch("https://discord.com/api/users/@me", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(res => {
+                    if (!res.ok) {
+                        console.error("Discord API error:", res.status, res.statusText);
+                        localStorage.removeItem("discordUser"); // Clear stale user data
+                        showLoginButton();
+                        throw new Error("Failed to fetch user data from Discord");
+                    }
+                    return res.json();
+                })
+                .then(user => {
+                    if (user.id) {
+                        localStorage.setItem("discordUser", JSON.stringify(user));
+                        showUser(user);
+                    } else {
+                        console.error("Invalid Discord user data received:", user);
+                        localStorage.removeItem("discordUser");
+                        showLoginButton();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error during Discord user fetch or processing:", error);
+                    localStorage.removeItem("discordUser");
+                    showLoginButton();
+                });
+            } else if (savedUser) {
+                showUser(savedUser);
+            } else {
+                showLoginButton();
             }
         });
     </script>
