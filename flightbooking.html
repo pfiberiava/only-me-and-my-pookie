@@ -464,39 +464,30 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // Loading Screen Logic
+         // Loading Screen Logic
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
             const loadingVideo = loadingScreen.querySelector('video');
 
-            // The video is short, around 5-6 seconds. Set a timeout slightly longer.
-            const videoDurationMs = 6500; // 6.5 seconds
-
             // Hide main content initially
-            mainContent.style.display = 'none';
+            mainContent.style.display = 'none'; // Ensure this is set to none initially
 
-            // Play video and then hide loading screen
+            // Always use a timeout, regardless of video
+            // For testing, make it very short (e.g., 500ms or 1000ms)
+            setTimeout(() => {
+                // Check if elements exist before trying to modify their style
+                if (loadingScreen && mainContent) {
+                    loadingScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                } else {
+                    console.warn("Loading screen or main content element not found!");
+                }
+            }, 1000); // Try 1 second first. If this works, the video/onended was the issue.
+
+            // Optional: You can keep the video.play() for visual effect
             if (loadingVideo) {
-                loadingVideo.play();
-                loadingVideo.onended = () => {
-                    loadingScreen.style.display = 'none';
-                    mainContent.style.display = 'block';
-                };
-                // Fallback timeout in case video.onended doesn't fire or video fails to load
-                setTimeout(() => {
-                    if (loadingScreen.style.display !== 'none') {
-                        loadingScreen.style.display = 'none';
-                        mainContent.style.display = 'block';
-                    }
-                }, videoDurationMs);
-            } else {
-                 // If for some reason video element isn't found, just use timeout
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    mainContent.style.display = 'block';
-                }, 1000); // Shorter fallback if no video
+                loadingVideo.play().catch(e => console.error("Video play failed:", e));
             }
-
 
             // Flight data based on your provided routes
             const airports = [
