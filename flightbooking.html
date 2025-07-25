@@ -8,183 +8,104 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" type="image/png">
     <style>
-        /* Define CSS Variables for consistent theming */
-        :root {
-            --color-primary-red: #DC2626;
-            --color-primary-red-hover: #B91C1C;
-            --color-discord-blue: #5865F2;
-            --color-discord-blue-hover: #4752C4;
-            --color-bg-dark: #0F172A; /* Slate-900 */
-            --color-bg-light: #1A202C; /* Slightly lighter dark for cards, similar to Slate-800 */
-            --color-text-light: #E2E8F0; /* Slate-200 */
-            --color-text-dark: #F8FAFC; /* White-ish */
-            --color-input-border: #475569; /* Slate-600 */
-            --color-input-focus: #DC2626; /* Red-600 */
-            --border-radius-lg: 0.75rem; /* 12px */
-            --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.3);
-            --shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.5);
-            --section-padding-y: 6rem; /* Large padding for sections */
-            --content-spacing-mb: 4rem; /* Spacing between main content blocks */
-        }
-
-        /* Base Body Styles */
         body {
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--color-bg-dark);
-            color: var(--color-text-light);
-            background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277'); /* Background image for hero */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Keeps background fixed during scroll */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+            background-color: #0F172A; /* Slate-900 for a dark theme */
+            color: #E2E8F0; /* Slate-200 for text */
+            /* Background image for the entire body */
+            background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277');
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Keep the background fixed during scroll */
         }
-
-        /* Headings Font */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
-            color: var(--color-text-dark);
+            color: #F8FAFC; /* White for headings */
         }
-
-        /* Hero Overlay for Text Readability */
+        /* Custom styles for hero section background overlay */
         .hero-overlay {
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%);
+            /* Adjusted for better visibility with a background image */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
         }
-
-        /* Container and Spacing */
-        .container-sleek {
-            max-width: 1200px; /* Wider container */
-        }
-        .py-section-sleek {
-            padding-top: var(--section-padding-y);
-            padding-bottom: var(--section-padding-y);
-        }
-        .mb-content-sleek {
-            margin-bottom: var(--content-spacing-mb);
-        }
-
-        /* Card Background Styling */
-        .card-background-sleek {
-            background-color: var(--color-bg-light);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-strong); /* Stronger shadow for depth */
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
-            backdrop-filter: blur(5px); /* Glassmorphism effect */
-            background-image: linear-gradient(135deg, rgba(26,32,44,0.7) 0%, rgba(15,23,42,0.8) 100%); /* Subtle gradient */
-        }
-
-        /* Section Headings Styling */
-        .section-heading-sleek {
-            font-size: 2.8rem; /* Larger heading */
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-        }
-
-        /* Form Container Styling */
-        .form-container-sleek {
-            background-color: rgba(26,32,44, 0.9); /* Slightly more opaque for readability */
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Input Fields & Selects Styling (Crucial for "ugly" fix) */
-        .input-field-sleek {
-            /* Tailwind classes for basic appearance */
-            @apply p-3 rounded-md bg-slate-800 text-slate-100 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300;
-
-            /* Custom CSS for depth and consistent look */
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-            /* Ensure text color is applied to select options */
-            color: var(--color-text-light);
-        }
-        /* Specific styling for <select> elements to remove default browser appearance */
-        .input-field-sleek select {
-            /* Remove default arrow */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            /* Add custom arrow (optional, can be done with background-image) */
-            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23E2E8F0%22%20d%3D%22M4.94%207.24%202.04%204.34%201%205.38%204.94%209.32%209.88%204.38%208.84%203.34%204.94%207.24z%22%2F%3E%3C%2Fsvg%3E');
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 0.8em;
-            padding-right: 2.5rem; /* Make space for the custom arrow */
-        }
-        /* Style for options within select for consistent text color */
-        .input-field-sleek option {
-            background-color: var(--color-bg-dark); /* Dark background for options */
-            color: var(--color-text-light); /* Light text for options */
-        }
-        .input-field-sleek:hover {
-            border-color: var(--color-input-focus);
-        }
-        .input-field-sleek::placeholder {
-            color: #94A3B8; /* Slate-400 */
-        }
-
-        /* Submit Button Styling */
-        .btn-submit-sleek {
-            @apply bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105;
-            letter-spacing: 0.05em;
-        }
-
-        /* Scroll-to-top Button */
+        /* Style for scroll-to-top button */
         #scrollToTopBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            background-color: var(--color-primary-red);
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place at the bottom */
+            right: 20px; /* Place at the right */
+            z-index: 100; /* High z-index to be on top */
+            background-color: #DC2626; /* Red-600 */
             color: white;
             padding: 12px 18px;
-            border-radius: 9999px;
+            border-radius: 9999px; /* Fully rounded */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
-            border: none;
         }
         #scrollToTopBtn:hover {
-            background-color: var(--color-primary-red-hover);
+            background-color: #B91C1C; /* Red-700 */
             transform: translateY(-3px);
         }
-
+        /* Basic icon styling for SVG consistency */
+        .icon-lg {
+            width: 4rem; /* 64px */
+            height: 4rem; /* 64px */
+        }
+        /* Card hover effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        /* Button hover effect */
+        .btn-primary {
+            background-color: #DC2626; /* Red-600 */
+            color: white;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #B91C1C; /* Red-700 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
         /* Discord Login Button and User Info Styling */
         .discord-login-btn {
-            @apply flex items-center justify-center space-x-2 px-6 py-3 rounded-full text-base font-semibold;
-            background-color: var(--color-discord-blue);
+            @apply flex items-center justify-center space-x-2 px-6 py-3 rounded-full text-base font-semibold; /* Increased padding and font size */
+            background-color: #5865F2; /* Discord Blue */
             color: white;
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow */
         }
         .discord-login-btn:hover {
-            background-color: var(--color-discord-blue-hover);
+            background-color: #4752C4; /* Darker Discord Blue */
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger hover shadow */
         }
         .discord-login-btn svg {
-            @apply w-6 h-6;
+            @apply w-6 h-6; /* Larger icon */
         }
-        .user-info {
+          .user-info {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: var(--color-text-light);
+            color: #E2E8F0; /* Slate-200 */
             font-weight: 600;
         }
         .user-info img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 2px solid var(--color-primary-red);
+            border: 2px solid #DC2626; /* Red-600 */
         }
         .logout-button {
-            background-color: var(--color-primary-red);
+            background-color: #DC2626; /* Red-600 */
             color: white;
             padding: 0.5rem 1.2rem;
             border: none;
@@ -194,23 +115,25 @@
             transition: background-color 0.2s;
         }
         .logout-button:hover {
-            background-color: var(--color-primary-red-hover);
+            background-color: #B91C1C; /* Red-700 */
         }
 
-        /* Custom Discord Button (from Uiverse.io - slightly adjusted) */
+        /* From Uiverse.io by vinodjangid07 */ 
         .Btn {
-            width: 45px; /* Adjust size if needed */
-            height: 45px; /* Adjust size if needed */
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: none;
             background-color: transparent;
             position: relative;
+            /* overflow: hidden; */
             border-radius: 7px;
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .svgContainer {
             width: 100%;
             height: 100%;
@@ -224,21 +147,24 @@
             transition: all 0.3s;
             border: 1px solid rgba(156, 156, 156, 0.466);
         }
+
         .BG {
             position: absolute;
             content: "";
             width: 100%;
             height: 100%;
-            background: var(--color-discord-blue);
+            background: #7289da;
             z-index: -1;
             border-radius: 10px;
             pointer-events: none;
             transition: all 0.3s;
         }
+
         .Btn:hover .BG {
             transform: rotate(35deg);
             transform-origin: bottom;
         }
+
         .Btn:hover .svgContainer {
             border: 1px solid rgba(206, 206, 206, 0.466);
             background-color: rgba(214, 214, 214, 0.466);
@@ -252,100 +178,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--color-bg-dark);
+            background-color: #0F172A; /* Dark background */
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 9999; /* High z-index to cover everything */
             flex-direction: column;
             gap: 20px;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Smooth transition for hiding */
-        }
-        #loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none; /* Make it unclickable when hidden */
-        }
-        #loading-screen p {
-            color: var(--color-text-dark);
         }
 
-        /* Message Box Overlay */
-        .message-box-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .video-container {
+            width: 200px; /* Adjust size as needed */
+            height: 200px; /* Adjust size as needed */
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 5px solid #DC2626; /* Red border for emphasis */
+        }
+        .video-container video { /* Changed from iframe to video */
+            display: block; /* Remove extra space below iframe */
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .message-box-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .message-box-content {
-            background-color: var(--color-bg-light);
-            padding: 2.5rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-strong);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-        .message-box-overlay.show .message-box-content {
-            transform: translateY(0);
-        }
-        #messageBoxTitle {
-            color: var(--color-primary-red);
-            margin-bottom: 1rem;
-        }
-        #messageBoxText {
-            color: var(--color-text-light);
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        #messageBoxCloseButton {
-            @apply bg-red-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-700 transition duration-300;
-        }
-
-        /* Login Required Message */
-        #loginRequiredMessage {
-            @apply text-center flex flex-col items-center gap-6 py-8;
-        }
-        #loginRequiredMessage p {
-            @apply text-xl text-red-400 font-semibold mb-6;
+            object-fit: cover; /* Ensures the video covers the container */
         }
     </style>
 </head>
 <body class="min-h-screen">
 
     <div id="loading-screen">
-        <p class="text-xl font-semibold">Loading content...</p>
+        <div class="video-container">
+            <video src="iberia animation.gif" autoplay loop muted playsinline frameborder="0" width="100%" height="100%"></video> </div>
+        <p class="text-xl font-semibold text-white">Loading...</p>
     </div>
 
-    <div id="main-content" class="hidden">
-        <header class="bg-gray-900 shadow-lg fixed w-full z-10 bg-opacity-90 backdrop-filter backdrop-blur-sm">
+    <div id="main-content" style="display: none;">
+        <header class="bg-gray-900 shadow-lg fixed w-full z-10">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center">
                     <img src="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" alt="Iberia VA Logo" class="h-10 w-auto mr-2"/>
-                    <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white tracking-wide rounded-md hover:text-red-500 transition duration-300">
+                    <a href="https://pfiberiava.github.io/flyibe/" class="text-2xl font-bold text-white rounded-md hover:text-red-500 transition duration-300">
                         Iberia VA
                     </a>
                 </div>
 
                 <div class="hidden md:flex space-x-8">
                     <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Home</a>
-                    <a href="#booking-form-section" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Book a Flight</a>
+                    <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Book a Flight</a>
                     <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 px-3 py-2 rounded-md">Contact</a>
                 </div>
 
@@ -363,7 +241,7 @@
             <div id="mobile-menu" class="md:hidden hidden bg-gray-800 py-4 shadow-lg">
                 <div class="flex flex-col items-center space-y-4">
                     <a href="index.html" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Home</a>
-                    <a href="#booking-form-section" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Book a Flight</a>
+                    <a href="#booking" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Book a Flight</a>
                     <a href="#contact" class="text-lg font-medium text-gray-300 hover:text-red-500 transition duration-300 w-full text-center py-2 rounded-md" onclick="closeMobileMenu()">Contact</a>
                     <div id="mobile-user-actions" class="user-actions w-full text-center py-2">
                         </div>
@@ -371,78 +249,213 @@
             </div>
         </header>
 
-        <main class="container container-sleek mx-auto py-section-sleek px-6 md:px-12">
-            <section id="booking-form-section" class="card-background-sleek p-8 md:p-12 mb-content-sleek relative overflow-hidden">
-                <h2 class="section-heading-sleek text-center mx-auto mb-10">Book Your Virtual Flight</h2>
-                <p class="text-center text-lg mb-10 max-w-2xl mx-auto text-slate-400">
-                    Plan your next virtual journey with Iberia VA. Select your departure, arrival, and flight details below.
-                </p>
+        <main class="pt-20"> <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center bg-opacity-80">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Book Your Flight with Iberia VA</h1>
+                    <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+                        Search for your perfect route and start your virtual journey with us today.
+                    </p>
 
-                <div class="max-w-xl mx-auto form-container-sleek">
-                    <div id="loginRequiredMessage" class="hidden">
-                        <p class="font-semibold text-xl text-red-400 mb-6">Please log in with Discord to book a flight.</p>
-                        <div id="loginButtonContainer" class="flex justify-center">
+                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('https://cdn.discordapp.com/attachments/1360096616454819841/1381007276193874050/image.png?ex=687dfa80&is=687ca900&hm=e95a5bd1855bad213f1c15978d3e506ce77ac547d1882ffd005cc4930725e5e4&'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
+                        <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
+                            <p class="text-gray-200">You need to be logged in with Discord to access the flight booking system.</p>
+                            <div id="login-button-container" class="mt-6 flex justify-center">
+                                </div>
+                        </div>
+
+                        <form id="flight-booking-form" action="https://formcarry.com/s/gcVYP6CKIN5" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                            <div>
+                                <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Origin Airport (ICAO)
+                                </label>
+                                <select
+                                    id="origin"
+                                    name="origin"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                >
+                                    <option value="">Select an Origin</option>
+                                    </select>
                             </div>
+
+                            <div>
+                                <label for="destination" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Destination Airport (ICAO)
+                                </label>
+                                <select
+                                    id="destination"
+                                    name="destination"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                >
+                                    <option value="">Select a Destination</option>
+                                    </select>
+                            </div>
+
+                            <div>
+                                <label for="departure-date" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Departure Date
+                                </label>
+                                <input
+                                    type="date"
+                                    id="departure-date"
+                                    name="departure-date"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label for="return-date" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Return Date (Optional)
+                                </label>
+                                <input
+                                    type="date"
+                                    id="return-date"
+                                    name="return-date"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label for="passengers" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Number of Passengers
+                                </label>
+                                <input
+                                    type="number"
+                                    id="passengers"
+                                    name="passengers"
+                                    min="1"
+                                    value="1"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label for="class" class="block text-gray-300 text-sm font-bold mb-2">
+                                    Class
+                                </label>
+                                <select
+                                    id="class"
+                                    name="class"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                >
+                                    <option value="economy">Economy</option>
+                                    <option value="business">Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+
+                            <div class="md:col-span-2 text-center mt-4 p-4 border border-gray-700 rounded-md bg-gray-800 hidden" id="selected-flight-info">
+                                <h3 class="text-xl font-bold text-white mb-2">Selected Flight Details:</h3>
+                                <p class="text-gray-300"><span class="font-semibold">Flight Number:</span> <span id="display-flight-number"></span></p>
+                                <p class="text-gray-300"><span class="font-semibold">Route:</span> <span id="display-route"></span></p>
+                                <p class="text-gray-300"><span class="font-semibold">Aircraft:</span> <span id="display-aircraft"></span></p>
+                                <p class="text-gray-300"><span class="font-semibold">Departure Time:</span> <span id="display-departure-time"></span></p>
+                                <p class="text-gray-300"><span class="font-semibold">Arrival Time:</span> <span id="display-arrival-time"></span></p>
+                                <p class="text-gray-300"><span class="font-semibold">Estimated Price:</span> $<span id="display-price"></span></p>
+                                <input type="hidden" id="hidden-flight-number" name="flightNumber">
+                                <input type="hidden" id="hidden-origin-name" name="originName">
+                                <input type="hidden" id="hidden-destination-name" name="destinationName">
+                                <input type="hidden" id="hidden-aircraft" name="aircraft">
+                                <input type="hidden" id="hidden-departure-time" name="departureTime">
+                                <input type="hidden" id="hidden-arrival-time" name="arrivalTime">
+                                <input type="hidden" id="hidden-price" name="price">
+                                <input type="hidden" id="hidden-discord-username" name="discordUsername">
+                                <input type="hidden" id="hidden-discord-id" name="discordId">
+                            </div>
+
+
+                            <div class="md:col-span-2 flex justify-center mt-6">
+                                <button
+                                    type="submit"
+                                    class="btn-primary flex items-center justify-center"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    Book Flight
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
+                            <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
+                            <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
+                        </div>
                     </div>
+                </div>
+            </section>
 
-                    <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6 hidden">
-                        <input type="hidden" name="Discord Username" id="discordUsernameHidden">
-                        <div>
-                            <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
-                            <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
-                                <option value="">Select Departure Airport</option>
-                                </select>
-                        </div>
-
-                        <div>
-                            <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
-                            <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
-                                <option value="">Select Arrival Airport</option>
-                                </select>
-                        </div>
-
-                        <div>
-                            <label for="flight-date" class="block text-slate-300 text-sm font-semibold mb-2">Departure Date:</label>
-                            <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
-                        </div>
-
-                        <div>
-                            <label for="passengers" class="block text-slate-300 text-sm font-semibold mb-2">Number of Passengers:</label>
-                            <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
-                        </div>
-
-                        <div>
-                            <label for="flight-class" class="block text-slate-300 text-sm font-semibold mb-2">Class:</label>
-                            <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
-                                <option value="Economy">Economy</option>
-                                <option value="Business">Business</option>
-                                <option value="First Class">First Class</option>
-                            </select>
-                        </div>
-
-                        <div class="flex justify-center pt-4">
-                            <button type="submit" class="btn-submit-sleek">
-                                Submit Booking
-                            </button>
-                        </div>
-                    </form>
+            <section id="contact" class="py-16 bg-slate-900 bg-opacity-80">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-4xl font-bold text-white mb-8">Need help?</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Have inquiries, suggestions, or ready to join our community? We're here to help.
+                    </p>
+                    <div class="flex justify-center">
+                        <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="Your Name"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                    placeholder="your@example.com"
+                                    required
+                                />
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 resize-y"
+                                    placeholder="Your message here..."
+                                    required
+                                ></textarea>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <button
+                                    type="submit"
+                                    class="btn-primary flex items-center"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>
-
-        <div id="messageBoxOverlay" class="message-box-overlay">
-            <div class="message-box-content">
-                <h3 id="messageBoxTitle" class="text-2xl font-bold"></h3>
-                <p id="messageBoxText"></p>
-                <button id="messageBoxCloseButton">Close</button>
-            </div>
-        </div>
 
         <button id="scrollToTopBtn" title="Go to top">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
         </button>
 
-        <footer class="bg-gray-950 text-gray-400 py-8 border-t border-slate-800">
+        <footer class="bg-gray-950 text-gray-400 py-8">
             <div class="container mx-auto px-6 text-center">
                 <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
                 <div class="flex justify-center space-x-6">
@@ -453,364 +466,398 @@
             </div>
         </footer>
     </div> <script>
-        // Use a self-executing anonymous function to encapsulate all scripts
-        // and ensure they run after the DOM is fully loaded.
-        (function() {
-            // --- CORE LOADING SCREEN LOGIC (PRIORITY) ---
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the current year for the footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Log initial state for debugging
-            console.log('Script loaded. Initial loading screen element:', loadingScreen);
-            console.log('Initial main content element:', mainContent);
+            // Mobile menu toggle logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
 
-            // Function to hide loader and show content
-            function showMainContent() {
-                if (loadingScreen && mainContent) {
-                    // Add 'hidden' class to loading screen for transition
-                    loadingScreen.classList.add('hidden');
-                    // Remove 'hidden' class from main content
-                    mainContent.classList.remove('hidden');
-                    console.log('Loading screen hidden, main content shown.');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            // Function to close mobile menu when a link is clicked
+            function closeMobileMenu() {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+
+            // Scroll to top button logic
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    scrollToTopBtn.style.display = "block";
                 } else {
-                    console.error('Error: Could not find loadingScreen or mainContent elements.');
-                    // Fallback: If elements aren't found, try to just show main content
-                    if (mainContent) {
-                         mainContent.classList.remove('hidden');
-                         console.log('Fallback: Main content shown because loader elements not found.');
-                    }
+                    scrollToTopBtn.style.display = "none";
                 }
             }
 
-            // Event listener for when the entire page (including images, scripts, etc.) has loaded.
-            window.addEventListener('load', () => {
-                console.log('window.load event fired. Preparing to show content...');
-                // A small delay to ensure CSS transitions can play out smoothly,
-                // or to account for any last-second rendering.
-                setTimeout(showMainContent, 500); // 0.5 seconds delay
+            // When the user clicks on the button, scroll to the top of the document
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // Fallback for extremely fast loads or if 'load' event somehow fails to fire
-            // after a longer delay (e.g., 5 seconds). This is a safety net.
+            // Loading Screen Logic
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            // The video is short, around 5-6 seconds. Set a timeout slightly longer.
+            const videoDurationMs = 6500; // 6.5 seconds
+
+            // Hide main content initially
+            mainContent.style.display = 'none';
+
+            // After the estimated video duration, hide the loading screen and show main content
             setTimeout(() => {
-                if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
-                    console.warn('Fallback: Loader still visible after 5 seconds. Forcing content display.');
-                    showMainContent();
-                }
-            }, 5000); // 5 seconds fallback
+                loadingScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+            }, videoDurationMs);
 
 
-            // --- ALL OTHER SCRIPT LOGIC BELOW THIS LINE ---
+            // Flight data based on your provided routes
+            const availableFlights = [
+                // Long Routes (A350 or A320)
+                { flightNumber: 'IB 401', origin: 'MDST', destination: 'LCLK', originName: 'Santiago - Cibao Intl.', destinationName: 'Larnaca, Cyprus', aircraft: 'Airbus A350 or A320', departureTime: '10:00 UTC', arrivalTime: '20:00 UTC', price: 650 },
+                { flightNumber: 'IB 402', origin: 'MDPC', destination: 'EFKT', originName: 'Punta Cana Intl.', destinationName: 'Kittilä, Finland', aircraft: 'Airbus A350 or A320', departureTime: '12:00 UTC', arrivalTime: '22:00 UTC', price: 700 },
+                // Mid Routes (A320 or B757)
+                { flightNumber: 'IB 201', origin: 'MDST', destination: 'GCLP', originName: 'Santiago - Cibao Intl.', destinationName: 'Gran Canaria', aircraft: 'Airbus A320 or Boeing 757', departureTime: '08:00 UTC', arrivalTime: '14:00 UTC', price: 300 },
+                { flightNumber: 'IB 202', origin: 'GCLP', destination: 'LEMH', originName: 'Gran Canaria', destinationName: 'Menorca', aircraft: 'Airbus A320 or Boeing 757', departureTime: '11:00 UTC', arrivalTime: '13:30 UTC', price: 180 },
+                { flightNumber: 'IB 203', origin: 'GCLP', destination: 'EGKK', originName: 'Gran Canaria', destinationName: 'London Gatwick', aircraft: 'Airbus A320 or Boeing 757', departureTime: '15:00 UTC', arrivalTime: '19:00 UTC', price: 250 },
+                { flightNumber: 'IB 204', origin: 'GCLP', destination: 'MDPC', originName: 'Gran Canaria', destinationName: 'Punta Cana', aircraft: 'Airbus A320 or Boeing 757', departureTime: '09:30 UTC', arrivalTime: '17:30 UTC', price: 450 },
+                { flightNumber: 'IB 205', origin: 'GCLP', destination: 'LCLK', originName: 'Gran Canaria', destinationName: 'Larnaca', aircraft: 'Airbus A320 or Boeing 757', departureTime: '13:00 UTC', arrivalTime: '20:00 UTC', price: 400 },
+            ];
 
-            document.addEventListener('DOMContentLoaded', () => {
-                console.log('DOM Content Loaded event fired.');
+            const flightBookingForm = document.getElementById('flight-booking-form');
+            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); 
+            const loginRequiredMessage = document.getElementById('login-required-message');
+            const loginButtonContainer = document.getElementById('login-button-container');
+            const originSelect = document.getElementById('origin'); 
+            const destinationSelect = document.getElementById('destination');
+            const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
+            const selectedFlightInfoDiv = document.getElementById('selected-flight-info');
 
-                // Get the current year for the footer
-                document.getElementById('current-year').textContent = new Date().getFullYear();
-
-                // Mobile menu toggle logic
-                const mobileMenuButton = document.getElementById('mobile-menu-button');
-                const mobileMenu = document.getElementById('mobile-menu');
-                const menuIcon = document.getElementById('menu-icon');
-                const closeIcon = document.getElementById('close-icon');
-
-                if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
-                    mobileMenuButton.addEventListener('click', () => {
-                        mobileMenu.classList.toggle('hidden');
-                        menuIcon.classList.toggle('hidden');
-                        closeIcon.classList.toggle('hidden');
-                    });
-                }
-
-
-                // Function to close mobile menu when a link is clicked
-                function closeMobileMenu() {
-                    if (mobileMenu) mobileMenu.classList.add('hidden');
-                    if (menuIcon) menuIcon.classList.remove('hidden');
-                    if (closeIcon) closeIcon.classList.add('hidden');
-                }
-
-                // Scroll to top button logic
-                const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() { scrollFunction() };
-
-                function scrollFunction() {
-                    if (scrollToTopBtn) { // Check if button exists
-                        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                            scrollToTopBtn.style.display = "block";
-                        } else {
-                            scrollToTopBtn.style.display = "none";
-                        }
-                    }
-                }
-
-                // When the user clicks on the button, scroll to the top of the document
-                if (scrollToTopBtn) { // Check if button exists before adding listener
-                    scrollToTopBtn.addEventListener('click', () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    });
-                }
+            // Hidden fields for FormCarry
+            const hiddenFlightNumber = document.getElementById('hidden-flight-number');
+            const hiddenOriginName = document.getElementById('hidden-origin-name');
+            const hiddenDestinationName = document.getElementById('hidden-destination-name');
+            const hiddenAircraft = document.getElementById('hidden-aircraft');
+            const hiddenDepartureTime = document.getElementById('hidden-departure-time');
+            const hiddenArrivalTime = document.getElementById('hidden-arrival-time');
+            const hiddenPrice = document.getElementById('hidden-price');
+            const hiddenDiscordUsername = document.getElementById('hidden-discord-username');
+            const hiddenDiscordId = document.getElementById('hidden-discord-id');
 
 
-                // Flight data based on your provided routes
-                const airports = [
-                    "Gran Canaria", "Punta Cana", "Larnaca", "London Gatwick",
-                    "London Southampton", "Kittila", "Cibao", "Arroyo Barril", "Menorca"
-                ].sort(); // Sort alphabetically for better user experience
-
-                const originSelect = document.getElementById('origin');
-                const destinationSelect = document.getElementById('destination');
-                const flightBookingForm = document.getElementById('flightBookingForm');
-                const discordUsernameHidden = document.getElementById('discordUsernameHidden');
-
-                const messageBoxOverlay = document.getElementById('messageBoxOverlay');
-                const messageBoxTitle = document.getElementById('messageBoxTitle');
-                const messageBoxText = document.getElementById('messageBoxText');
-                const messageBoxCloseButton = document.getElementById('messageBoxCloseButton');
-                const loginRequiredMessage = document.getElementById('loginRequiredMessage');
-                const loginButtonContainer = document.getElementById('loginButtonContainer');
-
-
-                // Function to show custom message box
-                function showMessageBox(title, message) {
-                    if (messageBoxTitle) messageBoxTitle.textContent = title;
-                    if (messageBoxText) messageBoxText.textContent = message;
-                    if (messageBoxOverlay) messageBoxOverlay.classList.add('show');
-                }
-
-                // Function to hide custom message box
-                function hideMessageBox() {
-                    if (messageBoxOverlay) messageBoxOverlay.classList.remove('show');
-                }
-
-                // Populate dropdowns with airport options
-                function populateAirportSelects() {
-                    if (originSelect) originSelect.innerHTML = '<option value="">Select Departure Airport</option>';
-                    if (destinationSelect) destinationSelect.innerHTML = '<option value="">Select Arrival Airport</option>';
-
-                    airports.forEach(airport => {
-                        const optionOrigin = document.createElement('option');
-                        optionOrigin.value = airport;
-                        optionOrigin.textContent = airport;
-                        if (originSelect) originSelect.appendChild(optionOrigin);
-
-                        const optionDestination = document.createElement('option');
-                        optionDestination.value = airport;
-                        optionDestination.textContent = airport;
-                        if (destinationSelect) destinationSelect.appendChild(optionDestination);
-                    });
-                }
-
-                // Populate selects only if they exist (i.e., form is not hidden)
-                // This check is mainly for initial setup before login state is known
-                if (originSelect && destinationSelect) {
-                    populateAirportSelects();
-                }
-
-
-                // Function to enable/disable form fields
-                function toggleFormFields(enable) {
-                    if (!flightBookingForm) return; // Exit if form element not found
-
-                    const formElements = flightBookingForm.querySelectorAll('input, select, button');
-                    formElements.forEach(element => {
-                        element.disabled = !enable;
-                        if (!enable) {
-                            element.classList.add('opacity-50', 'cursor-not-allowed');
-                        } else {
-                            element.classList.remove('opacity-50', 'cursor-not-allowed');
-                        }
-                    });
-                }
-
-
-                // Populate Discord username from localStorage
-                const userFromLocalStorage = JSON.parse(localStorage.getItem("discordUser"));
-                if (discordUsernameHidden) { // Check if element exists
-                    if (userFromLocalStorage && userFromLocalStorage.username) {
-                        const username = userFromLocalStorage.discriminator && userFromLocalStorage.discriminator !== '0'
-                            ? `${userFromLocalStorage.username}#${userFromLocalStorage.discriminator}`
-                            : userFromLocalStorage.username;
-                        discordUsernameHidden.value = username;
+            // Function to enable/disable form fields
+            function toggleFormFields(enable) {
+                formInputs.forEach(input => {
+                    input.disabled = !enable;
+                    // Optionally change appearance for disabled fields
+                    if (!enable) {
+                        input.classList.add('opacity-50', 'cursor-not-allowed');
                     } else {
-                        discordUsernameHidden.value = "Not Logged In (or error)";
+                        input.classList.remove('opacity-50', 'cursor-not-allowed');
                     }
-                }
+                });
+            }
 
+            // Function to populate origin dropdown
+            function populateOriginDropdown() {
+                const uniqueOrigins = new Map();
+                availableFlights.forEach(flight => {
+                    uniqueOrigins.set(flight.origin, flight.originName);
+                });
 
-                // Handle form submission
-                if (flightBookingForm) { // Only attach listener if form exists
-                    flightBookingForm.addEventListener('submit', async (event) => {
-                        event.preventDefault(); // Prevent default form submission
+                originSelect.innerHTML = '<option value="">Select an Origin</option>';
+                uniqueOrigins.forEach((name, icao) => {
+                    const option = document.createElement('option');
+                    option.value = icao;
+                    option.textContent = `${icao} (${name})`;
+                    originSelect.appendChild(option);
+                });
+            }
 
-                        const origin = originSelect ? originSelect.value : '';
-                        const destination = destinationSelect ? destinationSelect.value : '';
-                        const flightDate = document.getElementById('flight-date') ? document.getElementById('flight-date').value : '';
-                        const passengers = document.getElementById('passengers') ? document.getElementById('passengers').value : '';
-                        const flightClass = document.getElementById('flight-class') ? document.getElementById('flight-class').value : '';
-
-                        // Basic validation
-                        if (origin === "" || destination === "" || flightDate === "" || passengers === "" || flightClass === "") {
-                            showMessageBox("Validation Error", "Please fill in all flight details.");
-                            return;
-                        }
-
-                        if (origin === destination) {
-                            showMessageBox("Invalid Route", "Departure and Arrival airports cannot be the same. Please select different airports.");
-                            return;
-                        }
-
-                        // Use FormData to easily get all form data
-                        const formData = new FormData(flightBookingForm);
-
-                        try {
-                            const response = await fetch(flightBookingForm.action, {
-                                method: 'POST',
-                                body: formData,
-                                headers: {
-                                    'Accept': 'application/json' // Important for Formcarry to return JSON
-                                }
-                            });
-
-                            if (response.ok) {
-                                showMessageBox("Booking Submitted!", "Your flight booking request has been successfully sent. We will get back to you shortly!");
-                                flightBookingForm.reset(); // Clear form after successful submission
-                                populateAirportSelects(); // Re-populate to reset dropdowns correctly
-                                if (document.getElementById('passengers')) document.getElementById('passengers').value = "1"; // Reset passenger count
-                                if (document.getElementById('flight-class')) document.getElementById('flight-class').value = "Economy"; // Reset class
-                            } else {
-                                const data = await response.json();
-                                if (data.errors) {
-                                    showMessageBox("Submission Failed", `There was an issue with your submission: ${data.errors.map(err => err.message).join(', ')}. Please try again.`);
-                                } else {
-                                    showMessageBox("Submission Failed", "There was an error submitting your booking. Please try again later.");
-                                }
-                            }
-                        } catch (error) {
-                            console.error('Error submitting form:', error);
-                            showMessageBox("Submission Error", "An unexpected error occurred. Please check your internet connection and try again.");
+            // Function to populate destination dropdown based on selected origin
+            function populateDestinationDropdown(selectedOrigin) {
+                destinationSelect.innerHTML = '<option value="">Select a Destination</option>';
+                if (selectedOrigin) {
+                    const possibleDestinations = new Map();
+                    availableFlights.forEach(flight => {
+                        if (flight.origin === selectedOrigin) {
+                            possibleDestinations.set(flight.destination, flight.destinationName);
                         }
                     });
-                }
 
-
-                // Close message box when button is clicked
-                if (messageBoxCloseButton) messageBoxCloseButton.addEventListener('click', hideMessageBox);
-                // Close message box if clicking outside the content
-                if (messageBoxOverlay) {
-                    messageBoxOverlay.addEventListener('click', (event) => {
-                        if (event.target === messageBoxOverlay) {
-                            hideMessageBox();
-                        }
+                    possibleDestinations.forEach((name, icao) => {
+                        const option = document.createElement('option');
+                        option.value = icao;
+                        option.textContent = `${icao} (${name})`;
+                        destinationSelect.appendChild(option);
                     });
                 }
+            }
 
-                // Discord Login Integration
-                const CLIENT_ID = "1396149795470446692";
-                const REDIRECT_URI = "https://pfiberiava.github.io/flyibe/flightbooking.html";
+            // Function to update flight details display
+            function updateFlightDetailsDisplay() {
+                const selectedOrigin = originSelect.value;
+                const selectedDestination = destinationSelect.value;
 
-                const AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
+                if (selectedOrigin && selectedDestination) {
+                    const matchingFlight = availableFlights.find(flight => 
+                        flight.origin === selectedOrigin && flight.destination === selectedDestination
+                    );
 
-                const userActionsDivs = document.querySelectorAll(".user-actions");
+                    if (matchingFlight) {
+                        document.getElementById('display-flight-number').textContent = matchingFlight.flightNumber;
+                        document.getElementById('display-route').textContent = `${matchingFlight.originName} to ${matchingFlight.destinationName}`;
+                        document.getElementById('display-aircraft').textContent = matchingFlight.aircraft;
+                        document.getElementById('display-departure-time').textContent = matchingFlight.departureTime;
+                        document.getElementById('display-arrival-time').textContent = matchingFlight.arrivalTime;
+                        document.getElementById('display-price').textContent = matchingFlight.price.toFixed(2);
+                        selectedFlightInfoDiv.classList.remove('hidden');
 
-                function showUser(user) {
-                    const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'https://discord.com/assets/f135b1fcd3d2c4935480d19e910540d5.png';
-                    userActionsDivs.forEach(div => {
-                        div.innerHTML = `
-                            <div class="user-info">
-                                <img src="${avatarUrl}" alt="User Avatar">
-                                <span>${user.username}</span>
-                                <button class="logout-button">Logout</button>
-                            </div>
-                        `;
-                        const logoutButton = div.querySelector(".logout-button");
-                        if (logoutButton) {
-                            logoutButton.onclick = () => {
-                                localStorage.removeItem("discordUser");
-                                window.location.href = REDIRECT_URI;
-                            };
-                        }
-                    });
-                    // Hide login message, show form
-                    if (loginRequiredMessage) loginRequiredMessage.classList.add('hidden');
-                    if (flightBookingForm) flightBookingForm.classList.remove('hidden');
-                    toggleFormFields(true);
-                    populateAirportSelects(); // Re-populate to ensure options are there when shown
-                }
+                        // Set hidden form fields for FormCarry
+                        hiddenFlightNumber.value = matchingFlight.flightNumber;
+                        hiddenOriginName.value = matchingFlight.originName;
+                        hiddenDestinationName.value = matchingFlight.destinationName;
+                        hiddenAircraft.value = matchingFlight.aircraft;
+                        hiddenDepartureTime.value = matchingFlight.departureTime;
+                        hiddenArrivalTime.value = matchingFlight.arrivalTime;
+                        hiddenPrice.value = matchingFlight.price;
 
-                function showLoginButton() {
-                    userActionsDivs.forEach(div => {
-                        div.innerHTML = `
-                           <a href="${AUTH_URL}" class="Btn">
-                                <span class="svgContainer">
-                                    <svg viewBox="0 0 640 512" fill="white" height="1.4em" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"></path>
-                                    </svg>
-                                </span>
-                                <span class="BG"></span>
-                            </a>
-                        `;
-                        // Note: loginBtnHtml is not defined in this scope. Assuming it's meant to be the above <a> tag.
-                        // If you intend a separate login button in loginButtonContainer, define loginBtnHtml before this.
-                        if (loginButtonContainer) loginButtonContainer.innerHTML = div.querySelector('.Btn').outerHTML;
-                    });
-                    if (flightBookingForm) flightBookingForm.classList.add('hidden');
-                    toggleFormFields(false);
-                }
-
-                // --- Main login state management logic ---
-                const hash = window.location.hash.substring(1);
-                const params = new URLSearchParams(hash);
-                const token = params.get("access_token");
-
-                const savedUser = JSON.parse(localStorage.getItem("discordUser"));
-
-                if (token) {
-                    window.history.replaceState({}, document.title, REDIRECT_URI);
-
-                    fetch("https://discord.com/api/users/@me", {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    })
-                    .then(res => {
-                        if (!res.ok) {
-                            console.error("Discord API error:", res.status, res.statusText);
-                            localStorage.removeItem("discordUser"); // Clear invalid user data
-                            showLoginButton();
-                            throw new Error("Failed to fetch Discord user data.");
-                        }
-                        return res.json();
-                    })
-                    .then(user => {
-                        localStorage.setItem("discordUser", JSON.stringify(user));
-                        if (discordUsernameHidden) {
-                            discordUsernameHidden.value = user.discriminator && user.discriminator !== '0'
-                                                        ? `${user.username}#${user.discriminator}`
-                                                        : user.username;
-                        }
-                        showUser(user);
-                    })
-                    .catch(error => {
-                        console.error("Error during Discord authentication:", error);
-                        showLoginButton();
-                    });
-                } else if (savedUser) {
-                    // If no token in URL but user data in localStorage, display user info
-                    if (discordUsernameHidden) {
-                        discordUsernameHidden.value = savedUser.discriminator && savedUser.discriminator !== '0'
-                                                    ? `${savedUser.username}#${savedUser.discriminator}`
-                                                    : savedUser.username;
+                    } else {
+                        selectedFlightInfoDiv.classList.add('hidden');
+                        alert('No direct flight found for this route. Please try another combination.');
                     }
-                    showUser(savedUser);
                 } else {
-                    // No token, no saved user - show login button
-                    showLoginButton();
+                    selectedFlightInfoDiv.classList.add('hidden');
                 }
-            }); // End DOMContentLoaded
-        })(); // End self-executing function
+            }
+
+            // Event listeners for dropdowns
+            if (originSelect) {
+                originSelect.addEventListener('change', (event) => {
+                    populateDestinationDropdown(event.target.value);
+                    updateFlightDetailsDisplay();
+                });
+            }
+            if (destinationSelect) {
+                destinationSelect.addEventListener('change', updateFlightDetailsDisplay);
+            }
+
+            // Discord Authentication Logic
+            const CLIENT_ID = '1266392576569102438'; // Replace with your actual Discord Bot Client ID
+            const REDIRECT_URI = 'https://pfiberiava.github.io/flyibe/book.html'; // Ensure this matches your Discord app's redirect URI
+            const DISCORD_AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+
+            let userLoggedIn = false;
+            let userData = null;
+
+            // Function to render the login button
+            function renderLoginButton() {
+                const loginBtnHtml = `
+                    <button id="discord-login-btn" class="discord-login-btn">
+                        <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                            <path d="M20.22 0C21.2 0 22 0.79 22 1.78V18.22C22 19.21 21.2 20 20.22 20H1.78C0.79 20 0 19.21 0 18.22V1.78C0 0.79 0.79 0 1.78 0H20.22ZM7.72 14.18C6.67 14.18 5.76 13.25 5.76 12.18C5.76 11.12 6.67 10.18 7.72 10.18C8.78 10.18 9.68 11.12 9.68 12.18C9.68 13.25 8.78 14.18 7.72 14.18ZM14.28 14.18C13.22 14.18 12.18 13.25 12.18 12.18C12.18 11.12 13.22 10.18 14.28 10.18C15.33 10.18 16.24 11.12 16.24 12.18C16.24 13.25 15.33 14.18 14.28 14.18ZM16.6 6.88C16.6 7.42 16.09 7.82 15.54 7.82H6.46C5.91 7.82 5.4 7.42 5.4 6.88C5.4 6.33 5.91 5.94 6.46 5.94H15.54C16.09 5.94 16.6 6.33 16.6 6.88Z"></path>
+                        </svg>
+                        <span>Login with Discord</span>
+                    </button>
+                `;
+                document.getElementById('desktop-user-actions').innerHTML = loginBtnHtml;
+                document.getElementById('mobile-user-actions').innerHTML = loginBtnHtml;
+
+                document.getElementById('discord-login-btn').addEventListener('click', () => {
+                    window.location.href = DISCORD_AUTH_URL;
+                });
+            }
+
+            // Function to render user info and logout button
+            function renderUserInfo(user) {
+                const userInfoHtml = `
+                    <div class="user-info">
+                        <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=80" alt="User Avatar">
+                        <span>${user.username}</span>
+                    </div>
+                    <button id="logout-btn" class="logout-button">Logout</button>
+                `;
+                document.getElementById('desktop-user-actions').innerHTML = userInfoHtml;
+                document.getElementById('mobile-user-actions').innerHTML = userInfoHtml;
+
+                document.getElementById('logout-btn').addEventListener('click', () => {
+                    localStorage.removeItem('discord_access_token');
+                    localStorage.removeItem('discord_user_data');
+                    userLoggedIn = false;
+                    userData = null;
+                    checkLoginStatus();
+                });
+
+                // Update hidden fields for form submission
+                if (hiddenDiscordUsername && hiddenDiscordId) {
+                    hiddenDiscordUsername.value = user.username;
+                    hiddenDiscordId.value = user.id;
+                }
+            }
+
+            // Function to fetch user data from Discord API
+            async function fetchDiscordUser(accessToken) {
+                try {
+                    const response = await fetch('https://discord.com/api/users/@me', {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Error fetching user data: ${response.statusText}`);
+                    }
+                    const user = await response.json();
+                    localStorage.setItem('discord_user_data', JSON.stringify(user));
+                    return user;
+                } catch (error) {
+                    console.error('Failed to fetch Discord user:', error);
+                    localStorage.removeItem('discord_access_token'); // Clear token if invalid
+                    localStorage.removeItem('discord_user_data');
+                    return null;
+                }
+            }
+
+            // Function to check login status
+            async function checkLoginStatus() {
+                const accessToken = localStorage.getItem('discord_access_token');
+                if (accessToken) {
+                    const storedUserData = localStorage.getItem('discord_user_data');
+                    if (storedUserData) {
+                        userData = JSON.parse(storedUserData);
+                        userLoggedIn = true;
+                        renderUserInfo(userData);
+                        loginRequiredMessage.classList.add('hidden');
+                        flightBookingForm.classList.remove('hidden'); // Show form
+                        toggleFormFields(true); // Enable form fields
+                        populateOriginDropdown(); // Populate dropdowns
+                    } else {
+                        // Access token exists but user data doesn't, fetch it
+                        userData = await fetchDiscordUser(accessToken);
+                        if (userData) {
+                            userLoggedIn = true;
+                            renderUserInfo(userData);
+                            loginRequiredMessage.classList.add('hidden');
+                            flightBookingForm.classList.remove('hidden'); // Show form
+                            toggleFormFields(true); // Enable form fields
+                            populateOriginDropdown(); // Populate dropdowns
+                        } else {
+                            userLoggedIn = false;
+                            renderLoginButton();
+                            loginRequiredMessage.classList.remove('hidden');
+                            flightBookingForm.classList.add('hidden'); // Hide form
+                            toggleFormFields(false); // Disable form fields
+                        }
+                    }
+                } else {
+                    userLoggedIn = false;
+                    renderLoginButton();
+                    loginRequiredMessage.classList.remove('hidden');
+                    flightBookingForm.classList.add('hidden'); // Hide form
+                    toggleFormFields(false); // Disable form fields
+                }
+            }
+
+            // Handle Discord OAuth Redirect
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const discordAccessToken = params.get('access_token');
+
+            if (discordAccessToken) {
+                localStorage.setItem('discord_access_token', discordAccessToken);
+                // Clear the hash from the URL for a cleaner look
+                window.history.replaceState({}, document.title, window.location.pathname + window.location.search);
+                checkLoginStatus(); // Re-check status with the new token
+            } else {
+                checkLoginStatus(); // Initial check
+            }
+
+            // Form submission event listener
+            if (flightBookingForm) {
+                flightBookingForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); // Prevent default form submission
+
+                    if (!userLoggedIn) {
+                        alert('You must be logged in with Discord to book a flight.');
+                        return;
+                    }
+
+                    // Populate hidden fields right before submission
+                    const selectedOrigin = originSelect.value;
+                    const selectedDestination = destinationSelect.value;
+                    const matchingFlight = availableFlights.find(flight => 
+                        flight.origin === selectedOrigin && flight.destination === selectedDestination
+                    );
+
+                    if (matchingFlight) {
+                        hiddenFlightNumber.value = matchingFlight.flightNumber;
+                        hiddenOriginName.value = matchingFlight.originName;
+                        hiddenDestinationName.value = matchingFlight.destinationName;
+                        hiddenAircraft.value = matchingFlight.aircraft;
+                        hiddenDepartureTime.value = matchingFlight.departureTime;
+                        hiddenArrivalTime.value = matchingFlight.arrivalTime;
+                        hiddenPrice.value = matchingFlight.price;
+                    } else {
+                        alert('Please select a valid flight route.');
+                        return;
+                    }
+
+                    if (userData) {
+                        hiddenDiscordUsername.value = userData.username;
+                        hiddenDiscordId.value = userData.id;
+                    } else {
+                        alert('Discord user data not available. Please try logging in again.');
+                        return;
+                    }
+                    
+                    const formData = new FormData(flightBookingForm);
+                    
+                    try {
+                        const response = await fetch(flightBookingForm.action, {
+                            method: flightBookingForm.method,
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json' // Important for Formcarry to return JSON
+                            }
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok) {
+                            flightBookingForm.reset(); // Clear form fields
+                            selectedFlightInfoDiv.classList.add('hidden'); // Hide flight details
+                            bookingSuccessMessageDiv.classList.remove('hidden'); // Show success message
+                            // Optionally hide the form and show only success message
+                            // flightBookingForm.classList.add('hidden'); 
+
+                            // Hide success message after a few seconds
+                            setTimeout(() => {
+                                bookingSuccessMessageDiv.classList.add('hidden');
+                                // flightBookingForm.classList.remove('hidden'); // Show form again if desired
+                            }, 5000); 
+                        } else {
+                            console.error('Formcarry submission error:', result);
+                            alert('There was an error booking your flight. Please try again or contact support.');
+                        }
+                    } catch (error) {
+                        console.error('Network error during form submission:', error);
+                        alert('A network error occurred. Please check your internet connection and try again.');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
