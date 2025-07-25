@@ -197,8 +197,11 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             border: 5px solid #DC2626; /* Red border for emphasis */
         }
-        .video-container iframe {
+        .video-container video { /* Changed from iframe to video */
             display: block; /* Remove extra space below iframe */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure video covers the container */
         }
     </style>
 </head>
@@ -207,7 +210,7 @@
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="video-container">
-            <video src="iberia animation.gif" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay"></video>
+            <video src="iberia animation.gif" autoplay loop muted playsinline></video>
         </div>
         <p class="text-xl font-semibold text-white">Loading...</p>
     </div>
@@ -280,7 +283,7 @@
                         </div>
 
                         <!-- Flight Booking Form -->
-                        <form id="flight-booking-form" action="https://formcarry.com/s/gcVYP6CKIN5" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                        <form id="flight-booking-form" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                             <!-- Origin Airport -->
                             <div>
                                 <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
@@ -372,6 +375,10 @@
                                 </select>
                             </div>
 
+                            <!-- Hidden fields for Discord user info -->
+                            <input type="hidden" id="discord-username" name="Discord Username">
+                            <input type="hidden" id="discord-id" name="Discord User ID">
+
                             <!-- Submit Button -->
                             <div class="md:col-span-2 flex justify-center mt-6">
                                 <button
@@ -386,11 +393,11 @@
                             </div>
                         </form>
 
-                        <!-- Booking Success Message -->
-                        <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
+                        <!-- Booking Success Message (Removed as Formcarry handles it) -->
+                        <!-- <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
                             <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
                             <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
@@ -549,12 +556,16 @@
             ];
 
             const flightBookingForm = document.getElementById('flight-booking-form');
-            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); 
+            // const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); // Removed
             const loginRequiredMessage = document.getElementById('login-required-message');
             const loginButtonContainer = document.getElementById('login-button-container');
             const originSelect = document.getElementById('origin'); 
             const destinationSelect = document.getElementById('destination');
             const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
+
+            // Get hidden input fields for Discord user info
+            const discordUsernameInput = document.getElementById('discord-username');
+            const discordIdInput = document.getElementById('discord-id');
 
             // Function to enable/disable form fields
             function toggleFormFields(enable) {
@@ -605,27 +616,21 @@
             populateOriginDropdown();
             populateDestinationDropdown();
 
-            // Event listener for form submission
+            // Event listener for form submission (removed preventDefault)
             if (flightBookingForm) {
                 flightBookingForm.addEventListener('submit', (event) => {
-                    event.preventDefault(); // Prevent default form submission
+                    // Removed event.preventDefault() to allow Formcarry submission
+                    // console.log('Flight booking form submitted!'); // For debugging
+                    
+                    // Populate hidden Discord fields before submission
+                    const savedUser = JSON.parse(localStorage.getItem("discordUser"));
+                    if (savedUser) {
+                        discordUsernameInput.value = savedUser.username;
+                        discordIdInput.value = savedUser.id;
+                    }
 
-                    // In a real application, you would send this data to a backend
-                    // For now, we'll just show a success message.
-                    console.log('Flight booking form submitted!');
-                    console.log('Origin:', originSelect.value);
-                    console.log('Destination:', destinationSelect.value);
-                    console.log('Departure Date:', document.getElementById('departure-date').value);
-                    console.log('Return Date:', document.getElementById('return-date').value);
-                    console.log('Passengers:', document.getElementById('passengers').value);
-                    console.log('Class:', document.getElementById('class').value);
-
-                    // Hide the form and show the success message
-                    flightBookingForm.classList.add('hidden');
-                    bookingSuccessMessageDiv.classList.remove('hidden');
-
-                    // Scroll to the success message smoothly
-                    bookingSuccessMessageDiv.scrollIntoView({ behavior: 'smooth' });
+                    // Form will now submit naturally to Formcarry
+                    // The success message div is no longer needed here as Formcarry handles success state
                 });
             }
 
@@ -672,20 +677,20 @@
                 userActionsDivs.forEach(div => {
                     div.innerHTML = `
                        <a href="${AUTH_URL}"  class="Btn">
-      <span class="svgContainer">
-        <svg
-          viewBox="0 0 640 512"
-          fill="white"
-          height="1.4em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
-          ></path>
-        </svg>
-      </span>
-      <span class="BG"></span>
-    </a>
+             <span class="svgContainer">
+               <svg
+                 viewBox="0 0 640 512"
+                 fill="white"
+                 height="1.4em"
+                 xmlns="http://www.w3.org/2000/svg"
+               >
+                 <path
+                   d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"
+                 ></path>
+               </svg>
+             </span>
+             <span class="BG"></span>
+           </a>
                     `;
                 });
                 // Display login message and disable form
@@ -694,13 +699,13 @@
                     // Ensure the login button is rendered inside the message div
                     const loginBtnHtml = `
                        <a href="${AUTH_URL}" class="Btn">
-                            <span class="svgContainer">
-                                <svg viewBox="0 0 640 512" fill="white" height="1.4em" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"></path>
-                                </svg>
-                            </span>
-                            <span class="BG"></span>
-                        </a>
+                           <span class="svgContainer">
+                               <svg viewBox="0 0 640 512" fill="white" height="1.4em" xmlns="http://www.w3.org/2000/svg">
+                                   <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8zM222.5 337.6c-29 0-52.8-26.6-52.8-59.2S193.1 219.1 222.5 219.1c29.7 0 53.3 26.8 52.8 59.2C275.3 311 251.9 337.6 222.5 337.6zm195.4 0c-29 0-52.8-26.6-52.8-59.2S388.4 219.1 417.9 219.1c29.7 0 53.3 26.8 52.8 59.2C470.7 311 447.5 337.6 417.9 337.6z"></path>
+                               </svg>
+                           </span>
+                           <span class="BG"></span>
+                       </a>
                     `;
                     if (loginButtonContainer) loginButtonContainer.innerHTML = loginBtnHtml;
                 }
@@ -737,6 +742,9 @@
                     if (user.id) {
                         localStorage.setItem("discordUser", JSON.stringify(user));
                         showUser(user);
+                        // Populate hidden fields with Discord user info immediately after login
+                        discordUsernameInput.value = user.username;
+                        discordIdInput.value = user.id;
                     } else {
                         console.error("Invalid Discord user data received:", user);
                         localStorage.removeItem("discordUser");
@@ -750,6 +758,9 @@
                 });
             } else if (savedUser) {
                 showUser(savedUser);
+                // Populate hidden fields with Discord user info if user is already saved
+                discordUsernameInput.value = savedUser.username;
+                discordIdInput.value = savedUser.id;
             } else {
                 showLoginButton();
             }
