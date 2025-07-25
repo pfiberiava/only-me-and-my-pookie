@@ -234,6 +234,8 @@
             flex-direction: column;
             gap: 20px;
         }
+        /* Remove video-container styles if you truly don't have a video/gif */
+        /*
         .video-container {
             width: 200px;
             height: 200px;
@@ -242,12 +244,13 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             border: 5px solid var(--color-primary-red);
         }
-        .video-container video { /* Changed from iframe to video */
+        .video-container video {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures the video covers the container */
+            object-fit: cover;
         }
+        */
         #loading-screen p {
             color: var(--color-text-dark);
         }
@@ -312,10 +315,7 @@
 <body class="min-h-screen">
 
     <div id="loading-screen">
-        <div class="video-container">
-            <video src="iberia animation.gif" autoplay loop muted playsinline></video>
-        </div>
-        <p class="text-xl font-semibold">Loading...</p>
+        <p class="text-xl font-semibold">Loading content...</p>
     </div>
 
     <div id="main-content" style="display: none;">
@@ -370,47 +370,63 @@
                 </div>
 
                 <div class="max-w-xl mx-auto form-container-sleek">
-                  <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6">
-    <input type="hidden" name="Discord Username" id="discordUsernameHidden">
-    <div>
-        <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
-        <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
-            <option value="">Select Departure Airport</option>
-            </select>
-    </div>
+                    <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6">
+                        <input type="hidden" name="Discord Username" id="discordUsernameHidden">
+                        <div>
+                            <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
+                            <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
+                                <option value="">Select Departure Airport</option>
+                            </select>
+                        </div>
 
-    <div>
-        <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
-        <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
-            <option value="">Select Arrival Airport</option>
-            </select>
-    </div>
+                        <div>
+                            <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
+                            <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
+                                <option value="">Select Arrival Airport</option>
+                            </select>
+                        </div>
 
-    <div>
-        <label for="flight-date" class="block text-slate-300 text-sm font-semibold mb-2">Departure Date:</label>
-        <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
-    </div>
+                        <div>
+                            <label for="flight-date" class="block text-slate-300 text-sm font-semibold mb-2">Departure Date:</label>
+                            <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
+                        </div>
 
-    <div>
-        <label for="passengers" class="block text-slate-300 text-sm font-semibold mb-2">Number of Passengers:</label>
-        <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
-    </div>
+                        <div>
+                            <label for="passengers" class="block text-slate-300 text-sm font-semibold mb-2">Number of Passengers:</label>
+                            <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
+                        </div>
 
-    <div>
-        <label for="flight-class" class="block text-slate-300 text-sm font-semibold mb-2">Class:</label>
-        <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
-            <option value="Economy">Economy</option>
-            <option value="Business">Business</option>
-            <option value="First Class">First Class</option>
-        </select>
-    </div>
+                        <div>
+                            <label for="flight-class" class="block text-slate-300 text-sm font-semibold mb-2">Class:</label>
+                            <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
+                                <option value="Economy">Economy</option>
+                                <option value="Business">Business</option>
+                                <option value="First Class">First Class</option>
+                            </select>
+                        </div>
 
-    <div class="flex justify-center pt-4">
-        <button type="submit" class="btn-submit-sleek">
-            Submit Booking
+                        <div class="flex justify-center pt-4">
+                            <button type="submit" class="btn-submit-sleek">
+                                Submit Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <div id="messageBoxOverlay" class="message-box-overlay">
+            <div class="message-box-content">
+                <h3 id="messageBoxTitle" class="text-2xl font-bold"></h3>
+                <p id="messageBoxText"></p>
+                <button id="messageBoxCloseButton">Close</button>
+            </div>
+        </div>
+
+        <button id="scrollToTopBtn" title="Go to top">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
         </button>
-    </div>
-</form>
+
         <footer class="bg-gray-950 text-gray-400 py-8 border-t border-slate-800">
             <div class="container mx-auto px-6 text-center">
                 <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
@@ -464,30 +480,28 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-         // Loading Screen Logic
+            // --- Simplified Loading Screen Logic (since no GIF/video is used) ---
             const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
-            const loadingVideo = loadingScreen.querySelector('video');
 
-            // Hide main content initially
-            mainContent.style.display = 'none'; // Ensure this is set to none initially
-
-            // Always use a timeout, regardless of video
-            // For testing, make it very short (e.g., 500ms or 1000ms)
-            setTimeout(() => {
-                // Check if elements exist before trying to modify their style
-                if (loadingScreen && mainContent) {
-                    loadingScreen.style.display = 'none';
-                    mainContent.style.display = 'block';
-                } else {
-                    console.warn("Loading screen or main content element not found!");
-                }
-            }, 1000); // Try 1 second first. If this works, the video/onended was the issue.
-
-            // Optional: You can keep the video.play() for visual effect
-            if (loadingVideo) {
-                loadingVideo.play().catch(e => console.error("Video play failed:", e));
+            // Ensure main content is hidden initially
+            if (mainContent) {
+                mainContent.style.display = 'none';
             }
+
+            // Hide loading screen and show main content after a fixed delay
+            // A delay of 1000-1500ms (1-1.5 seconds) is usually good to ensure everything loads
+            setTimeout(() => {
+                if (loadingScreen) {
+                    loadingScreen.style.display = 'none';
+                }
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+            }, 1500); // 1.5 seconds delay
+
+            // --- End Simplified Loading Screen Logic ---
+
 
             // Flight data based on your provided routes
             const airports = [
