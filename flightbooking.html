@@ -8,47 +8,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="https://ik.imagekit.io/hswtnwf8i/iberia%20colors.png?updatedAt=1753001611287" type="image/png">
     <style>
+        /* Define CSS Variables for consistent theming */
         :root {
             --color-primary-red: #DC2626;
             --color-primary-red-hover: #B91C1C;
             --color-discord-blue: #5865F2;
             --color-discord-blue-hover: #4752C4;
-            --color-bg-dark: #0F172A;
-            --color-bg-light: #1A202C; /* Slightly lighter dark for cards */
-            --color-text-light: #E2E8F0;
-            --color-text-dark: #F8FAFC;
+            --color-bg-dark: #0F172A; /* Slate-900 */
+            --color-bg-light: #1A202C; /* Slightly lighter dark for cards, similar to Slate-800 */
+            --color-text-light: #E2E8F0; /* Slate-200 */
+            --color-text-dark: #F8FAFC; /* White-ish */
             --color-input-border: #475569; /* Slate-600 */
             --color-input-focus: #DC2626; /* Red-600 */
-            --border-radius-lg: 0.75rem;
+            --border-radius-lg: 0.75rem; /* 12px */
             --shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.3);
             --shadow-strong: 0 8px 20px rgba(0, 0, 0, 0.5);
             --section-padding-y: 6rem; /* Large padding for sections */
             --content-spacing-mb: 4rem; /* Spacing between main content blocks */
         }
 
+        /* Base Body Styles */
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             background-color: var(--color-bg-dark);
             color: var(--color-text-light);
-            background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277');
+            background-image: url('https://ik.imagekit.io/hswtnwf8i/a320%20beria.png?updatedAt=1752938799277'); /* Background image for hero */
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Keeps background fixed during scroll */
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
+        /* Headings Font */
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
             color: var(--color-text-dark);
         }
 
-        /* Hero overlay for better text readability on background image */
+        /* Hero Overlay for Text Readability */
         .hero-overlay {
             background-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 100%);
         }
 
-        /* Section Specific Styles */
+        /* Container and Spacing */
         .container-sleek {
             max-width: 1200px; /* Wider container */
         }
@@ -60,7 +63,7 @@
             margin-bottom: var(--content-spacing-mb);
         }
 
-        /* Card Background */
+        /* Card Background Styling */
         .card-background-sleek {
             background-color: var(--color-bg-light);
             border-radius: var(--border-radius-lg);
@@ -72,7 +75,7 @@
             background-image: linear-gradient(135deg, rgba(26,32,44,0.7) 0%, rgba(15,23,42,0.8) 100%); /* Subtle gradient */
         }
 
-        /* Section Headings */
+        /* Section Headings Styling */
         .section-heading-sleek {
             font-size: 2.8rem; /* Larger heading */
             font-weight: 700;
@@ -80,7 +83,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Form Container (This box now holds either the form or the login message) */
+        /* Form Container Styling */
         .form-container-sleek {
             background-color: rgba(26,32,44, 0.9); /* Slightly more opaque for readability */
             padding: 2.5rem;
@@ -89,17 +92,33 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Input Fields */
+        /* Input Fields & Selects Styling (Crucial for "ugly" fix) */
         .input-field-sleek {
-            /* Tailwind classes - these apply the basic styling */
-            /* p-3: padding | rounded-md: border-radius | bg-slate-800: background color */
-            /* text-slate-100: text color | border border-slate-700: border color */
-            /* focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent: focus styles */
-            /* transition duration-300: smooth transitions */
+            /* Tailwind classes for basic appearance */
             @apply p-3 rounded-md bg-slate-800 text-slate-100 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300;
 
-            /* Custom CSS for a bit more depth */
+            /* Custom CSS for depth and consistent look */
             box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            /* Ensure text color is applied to select options */
+            color: var(--color-text-light);
+        }
+        /* Specific styling for <select> elements to remove default browser appearance */
+        .input-field-sleek select {
+            /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            /* Add custom arrow (optional, can be done with background-image) */
+            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23E2E8F0%22%20d%3D%22M4.94%207.24%202.04%204.34%201%205.38%204.94%209.32%209.88%204.38%208.84%203.34%204.94%207.24z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 0.8em;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
+        }
+        /* Style for options within select for consistent text color */
+        .input-field-sleek option {
+            background-color: var(--color-bg-dark); /* Dark background for options */
+            color: var(--color-text-light); /* Light text for options */
         }
         .input-field-sleek:hover {
             border-color: var(--color-input-focus);
@@ -108,7 +127,7 @@
             color: #94A3B8; /* Slate-400 */
         }
 
-        /* Submit Button */
+        /* Submit Button Styling */
         .btn-submit-sleek {
             @apply bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105;
             letter-spacing: 0.05em;
@@ -299,12 +318,12 @@
             @apply bg-red-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-red-700 transition duration-300;
         }
 
-        /* Login Required Message - Adjusted to fit inside form-container-sleek */
+        /* Login Required Message */
         #loginRequiredMessage {
-            @apply text-center flex flex-col items-center gap-6 py-8; /* Added padding, removed redundant bg/shadow/border */
+            @apply text-center flex flex-col items-center gap-6 py-8;
         }
         #loginRequiredMessage p {
-            @apply text-xl text-red-400 font-semibold mb-6; /* Ensure text styling is consistent */
+            @apply text-xl text-red-400 font-semibold mb-6;
         }
     </style>
 </head>
@@ -312,7 +331,7 @@
 
     <div id="loading-screen">
         <p class="text-xl font-semibold">Loading content...</p>
-        </div>
+    </div>
 
     <div id="main-content" class="hidden">
         <header class="bg-gray-900 shadow-lg fixed w-full z-10 bg-opacity-90 backdrop-filter backdrop-blur-sm">
@@ -733,7 +752,9 @@
                                 <span class="BG"></span>
                             </a>
                         `;
-                        if (loginButtonContainer) loginButtonContainer.innerHTML = loginBtnHtml;
+                        // Note: loginBtnHtml is not defined in this scope. Assuming it's meant to be the above <a> tag.
+                        // If you intend a separate login button in loginButtonContainer, define loginBtnHtml before this.
+                        if (loginButtonContainer) loginButtonContainer.innerHTML = div.querySelector('.Btn').outerHTML;
                     });
                     if (flightBookingForm) flightBookingForm.classList.add('hidden');
                     toggleFormFields(false);
