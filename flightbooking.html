@@ -260,203 +260,66 @@
             </div>
         </header>
 
-        <main class="pt-20"> <!-- Padding to account for fixed header -->
-            <!-- Flight Booking Section -->
-            <section id="booking" class="py-16 bg-slate-900 min-h-screen flex items-center justify-center">
-                <div class="container mx-auto px-6 text-center">
-                    <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-white">Book Your Flight with Iberia VA</h1>
-                    <p class="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
-                        Search for your perfect route and start your virtual journey with us today.
-                    </p>
+         <main class="container container-sleek mx-auto py-section-sleek px-6 md:px-12">
+        <section id="booking-form-section" class="card-background-sleek p-8 md:p-12 mb-content-sleek relative overflow-hidden">
+            <h2 class="section-heading-sleek text-center mx-auto mb-10">Book Your Virtual Flight</h2>
+            <p class="text-center text-lg mb-10 max-w-2xl mx-auto text-slate-500">
+                Plan your next virtual journey with Air Europa Virtual. Select your departure, arrival, and flight details below.
+            </p>
 
-                    <div class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-3xl mx-auto border border-gray-700" style="background-image: url('https://cdn.discordapp.com/attachments/1360096616454819841/1381007276193874050/image.png?ex=687dfa80&is=687ca900&hm=e95a5bd1855bad213f1c15978d3e506ce77ac547d1882ffd005cc4930725e5e4&'); background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(15, 23, 42, 0.8);">
-                        <!-- Message for not logged in users -->
-                        <div id="login-required-message" class="text-center p-6 bg-red-800 bg-opacity-70 rounded-lg mb-8 hidden">
-                            <h3 class="text-2xl font-bold text-white mb-4">Please Log In to Book Flights</h3>
-                            <p class="text-gray-200">You need to be logged in with Discord to access the flight booking system.</p>
-                            <div id="login-button-container" class="mt-6 flex justify-center">
-                                <!-- Discord login button will be rendered here by JS -->
-                            </div>
-                        </div>
-
-                        <!-- Flight Booking Form -->
-                        <form id="flight-booking-form" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                            <!-- Origin Airport -->
-                            <div>
-                                <label for="origin" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Origin Airport (ICAO)
-                                </label>
-                                <select
-                                    id="origin"
-                                    name="origin"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    required
-                                >
-                                    <option value="">Select an Origin</option>
-                                    <!-- Options will be dynamically populated by JavaScript -->
-                                </select>
-                            </div>
-
-                            <!-- Destination Airport -->
-                            <div>
-                                <label for="destination" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Destination Airport (ICAO)
-                                </label>
-                                <select
-                                    id="destination"
-                                    name="destination"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    required
-                                >
-                                    <option value="">Select a Destination</option>
-                                    <!-- Options will be dynamically populated by JavaScript -->
-                                </select>
-                            </div>
-
-                            <!-- Departure Date -->
-                            <div>
-                                <label for="departure-date" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Departure Date
-                                </label>
-                                <input
-                                    type="date"
-                                    id="departure-date"
-                                    name="departure-date"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    required
-                                />
-                            </div>
-
-                            <!-- Return Date (Optional) -->
-                            <div>
-                                <label for="return-date" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Return Date (Optional)
-                                </label>
-                                <input
-                                    type="date"
-                                    id="return-date"
-                                    name="return-date"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                />
-                            </div>
-
-                            <!-- Number of Passengers -->
-                            <div>
-                                <label for="passengers" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Number of Passengers
-                                </label>
-                                <input
-                                    type="number"
-                                    id="passengers"
-                                    name="passengers"
-                                    min="1"
-                                    value="1"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    required
-                                />
-                            </div>
-
-                            <!-- Class -->
-                            <div>
-                                <label for="class" class="block text-gray-300 text-sm font-bold mb-2">
-                                    Class
-                                </label>
-                                <select
-                                    id="class"
-                                    name="class"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                >
-                                    <option value="economy">Economy</option>
-                                    <option value="business">Business</option>
-                                    <option value="first">First Class</option>
-                                </select>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="md:col-span-2 flex justify-center mt-6">
-                                <button
-                                    type="submit"
-                                    class="btn-primary flex items-center justify-center"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                    Book Flight
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- Booking Success Message -->
-                        <div id="booking-success-message" class="mt-12 text-center p-6 bg-green-800 bg-opacity-70 rounded-lg hidden">
-                            <h3 class="text-2xl font-bold text-white mb-4">Booking Successful!</h3>
-                            <p class="text-gray-200">Your flight booking has been successfully recorded. We will reach you soon!</p>
-                        </div>
+            <div class="max-w-xl mx-auto form-container-sleek">
+                <form id="flightBookingForm" action="https://formcarry.com/s/F0a0gvvInBU" method="POST" class="space-y-6">
+                    <input type="hidden" name="Discord Username" id="discordUsernameHidden">
+                    <div>
+                        <label for="origin" class="block text-slate-700 text-sm font-semibold mb-2">Departure Airport:</label>
+                        <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
+                            <option value="">Select Departure Airport</option>
+                            </select>
                     </div>
-                </div>
-            </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="py-16 bg-slate-900">
-                <div class="container mx-auto px-6 text-center">
-                    <h2 class="text-4xl font-bold text-white mb-8">Need help?</h2>
-                    <p class="text-lg text-gray-300 mb-8">
-                        Have inquiries, suggestions, or ready to join our community? We're here to help.
-                    </p>
-                    <div class="flex justify-center">
-                        <form action="https://formcarry.com/s/vxkABthAhUG" method="POST" enctype="multipart/form-data" class="bg-gray-900 p-8 rounded-lg shadow-xl w-full max-w-lg border border-gray-700">
-                            <div class="mb-6">
-                                <label for="name" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="Your Name"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-6">
-                                <label for="email" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
-                                    placeholder="your@example.com"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-300 text-sm font-bold mb-2 text-left">
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    rows="5"
-                                    class="shadow appearance-none border border-gray-700 bg-gray-800 rounded-md w-full py-3 px-4 text-white leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 resize-y"
-                                    placeholder="Your message here..."
-                                    required
-                                ></textarea>
-                            </div>
-                            <div class="flex items-center justify-center">
-                                <button
-                                    type="submit"
-                                    class="btn-primary flex items-center"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.29 6.76a2 2 0 0 1-2.42 0L2 7"/></svg>
-                                    Send Message
-                                </button>
-                            </div>
-                        </form>
+                    <div>
+                        <label for="destination" class="block text-slate-700 text-sm font-semibold mb-2">Arrival Airport:</label>
+                        <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
+                            <option value="">Select Arrival Airport</option>
+                            </select>
                     </div>
-                </div>
-            </section>
-        </main>
+
+                    <div>
+                        <label for="flight-date" class="block text-slate-700 text-sm font-semibold mb-2">Departure Date:</label>
+                        <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
+                    </div>
+
+                    <div>
+                        <label for="passengers" class="block text-slate-700 text-sm font-semibold mb-2">Number of Passengers:</label>
+                        <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
+                    </div>
+
+                    <div>
+                        <label for="flight-class" class="block text-slate-700 text-sm font-semibold mb-2">Class:</label>
+                        <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
+                            <option value="Economy">Economy</option>
+                            <option value="Business">Business</option>
+                            <option value="First Class">First Class</option>
+                        </select>
+                    </div>
+
+                    <div class="flex justify-center pt-4">
+                        <button type="submit" class="btn-submit-sleek">
+                            Submit Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div id="messageBoxOverlay" class="message-box-overlay">
+        <div class="message-box-content">
+            <h3 id="messageBoxTitle" class="text-2xl font-bold"></h3>
+            <p id="messageBoxText"></p>
+            <button id="messageBoxCloseButton">Close</button>
+        </div>
+    </div>
 
         <!-- Scroll to Top Button -->
         <button id="scrollToTopBtn" title="Go to top">
@@ -536,99 +399,129 @@
 
 
             // Flight data based on your provided routes
-            const availableFlights = [
-                // Long Routes (A350 or A320)
-                { flightNumber: 'IB 401', origin: 'MDST', destination: 'LCLK', originName: 'Santiago - Cibao Intl.', destinationName: 'Larnaca, Cyprus', aircraft: 'Airbus A350 or A320', departureTime: '10:00 UTC', arrivalTime: '20:00 UTC', price: 650 },
-                { flightNumber: 'IB 402', origin: 'MDPC', destination: 'EFKT', originName: 'Punta Cana Intl.', destinationName: 'Kittilä, Finland', aircraft: 'Airbus A350 or A320', departureTime: '12:00 UTC', arrivalTime: '22:00 UTC', price: 700 },
-                // Mid Routes (A320 or B757)
-                { flightNumber: 'IB 201', origin: 'MDST', destination: 'GCLP', originName: 'Santiago - Cibao Intl.', destinationName: 'Gran Canaria', aircraft: 'Airbus A320 or Boeing 757', departureTime: '08:00 UTC', arrivalTime: '14:00 UTC', price: 300 },
-                { flightNumber: 'IB 202', origin: 'GCLP', destination: 'LEMH', originName: 'Gran Canaria', destinationName: 'Menorca', aircraft: 'Airbus A320 or Boeing 757', departureTime: '11:00 UTC', arrivalTime: '13:30 UTC', price: 180 },
-                { flightNumber: 'IB 203', origin: 'GCLP', destination: 'EGKK', originName: 'Gran Canaria', destinationName: 'London Gatwick', aircraft: 'Airbus A320 or Boeing 757', departureTime: '15:00 UTC', arrivalTime: '19:00 UTC', price: 250 },
-                { flightNumber: 'IB 204', origin: 'GCLP', destination: 'MDPC', originName: 'Gran Canaria', destinationName: 'Punta Cana', aircraft: 'Airbus A320 or Boeing 757', departureTime: '09:30 UTC', arrivalTime: '17:30 UTC', price: 450 },
-                { flightNumber: 'IB 205', origin: 'GCLP', destination: 'LCLK', originName: 'Gran Canaria', destinationName: 'Larnaca', aircraft: 'Airbus A320 or Boeing 757', departureTime: '13:00 UTC', arrivalTime: '20:00 UTC', price: 400 },
-            ];
+           const airports = [
+            "Gran Canaria", "Punta Cana", "Larnaca", "London Gatwick",
+            "London Southampton", "Kittila", "Cibao", "Arroyo Barril", "Menorca"
+        ].sort(); // Sort alphabetically for better user experience
 
-            const flightBookingForm = document.getElementById('flight-booking-form');
-            const bookingSuccessMessageDiv = document.getElementById('booking-success-message'); 
-            const loginRequiredMessage = document.getElementById('login-required-message');
-            const loginButtonContainer = document.getElementById('login-button-container');
-            const originSelect = document.getElementById('origin'); 
+        document.addEventListener('DOMContentLoaded', () => {
+            const originSelect = document.getElementById('origin');
             const destinationSelect = document.getElementById('destination');
-            const formInputs = flightBookingForm ? flightBookingForm.querySelectorAll('input, select, button[type="submit"]') : [];
+            const flightBookingForm = document.getElementById('flightBookingForm');
+            const discordUsernameHidden = document.getElementById('discordUsernameHidden');
+            // const discordEmailHidden = document.getElementById('discordEmailHidden'); // Uncomment if you get email from Discord
 
-            // Function to enable/disable form fields
-            function toggleFormFields(enable) {
-                formInputs.forEach(input => {
-                    input.disabled = !enable;
-                    // Optionally change appearance for disabled fields
-                    if (!enable) {
-                        input.classList.add('opacity-50', 'cursor-not-allowed');
+            const messageBoxOverlay = document.getElementById('messageBoxOverlay');
+            const messageBoxTitle = document.getElementById('messageBoxTitle');
+            const messageBoxText = document.getElementById('messageBoxText');
+            const messageBoxCloseButton = document.getElementById('messageBoxCloseButton');
+
+            // Function to show custom message box
+            function showMessageBox(title, message) {
+                messageBoxTitle.textContent = title;
+                messageBoxText.textContent = message;
+                messageBoxOverlay.classList.add('show');
+            }
+
+            // Function to hide custom message box
+            function hideMessageBox() {
+                messageBoxOverlay.classList.remove('show');
+            }
+
+            // Populate dropdowns with airport options
+            function populateAirportSelects() {
+                airports.forEach(airport => {
+                    const optionOrigin = document.createElement('option');
+                    optionOrigin.value = airport;
+                    optionOrigin.textContent = airport;
+                    originSelect.appendChild(optionOrigin);
+
+                    const optionDestination = document.createElement('option');
+                    optionDestination.value = airport;
+                    optionDestination.textContent = airport;
+                    destinationSelect.appendChild(optionDestination);
+                });
+            }
+
+            populateAirportSelects();
+
+            // Populate Discord username from localStorage
+            const userFromLocalStorage = JSON.parse(localStorage.getItem("discordUser"));
+            if (userFromLocalStorage && userFromLocalStorage.username) {
+                // For modern Discord usernames (without discriminator)
+                const username = userFromLocalStorage.discriminator && userFromLocalStorage.discriminator !== '0'
+                    ? `${userFromLocalStorage.username}#${userFromLocalStorage.discriminator}`
+                    : userFromLocalStorage.username;
+                discordUsernameHidden.value = username;
+                // if (savedUser.email) { // Uncomment if you get email from Discord
+                //     discordEmailHidden.value = savedUser.email;
+                // }
+            } else {
+                discordUsernameHidden.value = "Not Logged In (or error)";
+            }
+
+
+            // Handle form submission
+            flightBookingForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                const origin = originSelect.value;
+                const destination = destinationSelect.value;
+                const flightDate = document.getElementById('flight-date').value;
+                const passengers = document.getElementById('passengers').value;
+                const flightClass = document.getElementById('flight-class').value; // Get the selected class
+
+                // Basic validation
+                if (origin === "" || destination === "" || flightDate === "" || passengers === "" || flightClass === "") {
+                    showMessageBox("Validation Error", "Please fill in all flight details.");
+                    return;
+                }
+
+                if (origin === destination) {
+                    showMessageBox("Invalid Route", "Departure and Arrival airports cannot be the same. Please select different airports.");
+                    return;
+                }
+
+                // Use FormData to easily get all form data
+                const formData = new FormData(flightBookingForm);
+
+                try {
+                    const response = await fetch(flightBookingForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json' // Important for Formcarry to return JSON
+                        }
+                    });
+
+                    if (response.ok) {
+                        showMessageBox("Booking Submitted!", "Your flight booking request has been successfully sent. We will get back to you shortly!");
+                        flightBookingForm.reset(); // Clear form after successful submission
                     } else {
-                        input.classList.remove('opacity-50', 'cursor-not-allowed');
+                        const data = await response.json();
+                        // Formcarry returns errors in 'data.errors' if validation fails or other issues.
+                        // You might want to inspect `data` for specific error messages from Formcarry.
+                        if (data.errors) {
+                            showMessageBox("Submission Failed", `There was an issue with your submission: ${data.errors.map(err => err.message).join(', ')}. Please try again.`);
+                        } else {
+                            showMessageBox("Submission Failed", "There was an error submitting your booking. Please try again later.");
+                        }
                     }
-                });
-            }
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    showMessageBox("Submission Error", "An unexpected error occurred. Please check your internet connection and try again.");
+                }
+            });
 
-            // Function to populate origin dropdown
-            function populateOriginDropdown() {
-                const uniqueOrigins = new Map();
-                availableFlights.forEach(flight => {
-                    uniqueOrigins.set(flight.origin, flight.originName);
-                });
-
-                originSelect.innerHTML = '<option value="">Select an Origin</option>';
-                uniqueOrigins.forEach((name, icao) => {
-                    const option = document.createElement('option');
-                    option.value = icao;
-                    option.textContent = `${icao} (${name})`;
-                    originSelect.appendChild(option);
-                });
-            }
-
-            // Function to populate destination dropdown
-            function populateDestinationDropdown() {
-                const uniqueDestinations = new Map();
-                availableFlights.forEach(flight => {
-                    uniqueDestinations.set(flight.destination, flight.destinationName);
-                });
-
-                destinationSelect.innerHTML = '<option value="">Select a Destination</option>';
-                uniqueDestinations.forEach((name, icao) => {
-                    const option = document.createElement('option');
-                    option.value = icao;
-                    option.textContent = `${icao} (${name})`;
-                    destinationSelect.appendChild(option);
-                });
-            }
-
-            // Initial population of dropdowns
-            populateOriginDropdown();
-            populateDestinationDropdown();
-
-            // Event listener for form submission
-            if (flightBookingForm) {
-                flightBookingForm.addEventListener('submit', (event) => {
-                    event.preventDefault(); // Prevent default form submission
-
-                    // In a real application, you would send this data to a backend
-                    // For now, we'll just show a success message.
-                    console.log('Flight booking form submitted!');
-                    console.log('Origin:', originSelect.value);
-                    console.log('Destination:', destinationSelect.value);
-                    console.log('Departure Date:', document.getElementById('departure-date').value);
-                    console.log('Return Date:', document.getElementById('return-date').value);
-                    console.log('Passengers:', document.getElementById('passengers').value);
-                    console.log('Class:', document.getElementById('class').value);
-
-                    // Hide the form and show the success message
-                    flightBookingForm.classList.add('hidden');
-                    bookingSuccessMessageDiv.classList.remove('hidden');
-
-                    // Scroll to the success message smoothly
-                    bookingSuccessMessageDiv.scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-
+            // Close message box when button is clicked
+            messageBoxCloseButton.addEventListener('click', hideMessageBox);
+            // Close message box if clicking outside the content
+            messageBoxOverlay.addEventListener('click', (event) => {
+                if (event.target === messageBoxOverlay) {
+                    hideMessageBox();
+                }
+            });
+        });
 
             // Discord Login Integration
             // Your Discord Client ID from the Discord Developer Portal
