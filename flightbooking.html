@@ -370,63 +370,47 @@
                 </div>
 
                 <div class="max-w-xl mx-auto form-container-sleek">
-                    <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6">
-                        <input type="hidden" name="Discord Username" id="discordUsernameHidden">
-                        <div>
-                            <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
-                            <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
-                                <option value="">Select Departure Airport</option>
-                            </select>
-                        </div>
+                  <form id="flightBookingForm" action="https://formcarry.com/s/B6IGRQkIQFb" method="POST" class="space-y-6">
+    <input type="hidden" name="Discord Username" id="discordUsernameHidden">
+    <div>
+        <label for="origin" class="block text-slate-300 text-sm font-semibold mb-2">Departure Airport:</label>
+        <select id="origin" name="Departure Airport" class="input-field-sleek w-full" required>
+            <option value="">Select Departure Airport</option>
+            </select>
+    </div>
 
-                        <div>
-                            <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
-                            <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
-                                <option value="">Select Arrival Airport</option>
-                            </select>
-                        </div>
+    <div>
+        <label for="destination" class="block text-slate-300 text-sm font-semibold mb-2">Arrival Airport:</label>
+        <select id="destination" name="Arrival Airport" class="input-field-sleek w-full" required>
+            <option value="">Select Arrival Airport</option>
+            </select>
+    </div>
 
-                        <div>
-                            <label for="flight-date" class="block text-slate-300 text-sm font-semibold mb-2">Departure Date:</label>
-                            <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
-                        </div>
+    <div>
+        <label for="flight-date" class="block text-slate-300 text-sm font-semibold mb-2">Departure Date:</label>
+        <input type="date" id="flight-date" name="Departure Date" class="input-field-sleek w-full" required>
+    </div>
 
-                        <div>
-                            <label for="passengers" class="block text-slate-300 text-sm font-semibold mb-2">Number of Passengers:</label>
-                            <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
-                        </div>
+    <div>
+        <label for="passengers" class="block text-slate-300 text-sm font-semibold mb-2">Number of Passengers:</label>
+        <input type="number" id="passengers" name="Number of Passengers" min="1" value="1" class="input-field-sleek w-full" required>
+    </div>
 
-                        <div>
-                            <label for="flight-class" class="block text-slate-300 text-sm font-semibold mb-2">Class:</label>
-                            <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
-                                <option value="Economy">Economy</option>
-                                <option value="Business">Business</option>
-                                <option value="First Class">First Class</option>
-                            </select>
-                        </div>
+    <div>
+        <label for="flight-class" class="block text-slate-300 text-sm font-semibold mb-2">Class:</label>
+        <select id="flight-class" name="Flight Class" class="input-field-sleek w-full" required>
+            <option value="Economy">Economy</option>
+            <option value="Business">Business</option>
+            <option value="First Class">First Class</option>
+        </select>
+    </div>
 
-                        <div class="flex justify-center pt-4">
-                            <button type="submit" class="btn-submit-sleek">
-                                Submit Booking
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </main>
-
-        <div id="messageBoxOverlay" class="message-box-overlay">
-            <div class="message-box-content">
-                <h3 id="messageBoxTitle" class="text-2xl font-bold"></h3>
-                <p id="messageBoxText"></p>
-                <button id="messageBoxCloseButton">Close</button>
-            </div>
-        </div>
-
-        <button id="scrollToTopBtn" title="Go to top">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    <div class="flex justify-center pt-4">
+        <button type="submit" class="btn-submit-sleek">
+            Submit Booking
         </button>
-
+    </div>
+</form>
         <footer class="bg-gray-950 text-gray-400 py-8 border-t border-slate-800">
             <div class="container mx-auto px-6 text-center">
                 <p class="mb-4">© <span id="current-year"></span> Iberia VA. All rights reserved.</p>
